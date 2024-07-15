@@ -18,27 +18,22 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/dashboard', function () {
-    // Only authenticated users can access this route
-})->middleware('auth')->name('dashboard');
-
 Route::middleware('auth')->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('index3');
-    // });
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/dashboard', function () {
+        return view('index3');
+    })->name('dashboard');
 });
+
+
+
 Route::get('/', function () {
     return view('index1');
 });
+
 Route::get('/register', [RegistrasiController::class, 'index']);
-Route::get('/login', function () {
-    return view('index2');
-})->name('login');
 
-
-// Untuk logout
+Route::get('/login', [LoginController::class,'login'])->name('login');
 
 Route::get('/grafikwaqms', function () {
     return view('grafik');
@@ -50,16 +45,9 @@ Route::get('/datamaps', function () {
     return view('tabeldata');
 });
 
-
-
-
-
 Route::get('/thingspeak', [ThingSpeakController::class, 'index']);
 
 // routes/web.php
-
-
-
 Route::post('/profile/upload', [ProfileController::class, 'uploadPicture'])->name('profile.upload');
 Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
 Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
