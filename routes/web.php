@@ -7,6 +7,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PersonalExposureController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +20,7 @@ use App\Http\Controllers\Auth\LoginController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/dashboard', function () {
@@ -33,7 +36,7 @@ Route::get('/', function () {
 
 Route::get('/register', [RegistrasiController::class, 'index']);
 
-Route::get('/login', [LoginController::class,'login'])->name('login');
+Route::get('/login', [LoginController::class, 'login'])->name('login');
 
 Route::get('/grafikwaqms', function () {
     return view('grafik');
@@ -46,6 +49,8 @@ Route::get('/datamaps', function () {
 });
 
 Route::get('/thingspeak', [ThingSpeakController::class, 'index']);
+
+
 
 // routes/web.php
 Route::post('/profile/upload', [ProfileController::class, 'uploadPicture'])->name('profile.upload');

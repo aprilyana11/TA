@@ -10,7 +10,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background: url(bg-img-regis.png);
+    background-image: url("/img/david-marcu-78A265wPiO4-unsplash.jpg");
     background-size: cover;
 }
 
