@@ -17,6 +17,7 @@ Route::middleware(['web'])->group(function () {
 
 
 Route::post('/register', [RegistrasiController::class, 'register'])->name('register');
+Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 
 // routes/web.php atau routes/api.php
 
