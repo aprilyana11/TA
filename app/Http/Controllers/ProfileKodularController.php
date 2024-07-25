@@ -15,9 +15,16 @@ class ProfileKodularController extends Controller
 {
     // Metode-metode controller Anda
 
-    public function show(Request $request)
+    public function index(Request $request)
     {
-        User::where("username", $request->username)->get();
+        $user = User::where("username", $request->username)->first();
+        return response()->json([
+            'username' => $user->username,
+            'gender' => $user->gender,
+            'weight' => $user->weight,
+            'phone_number' => $user->phone_number,
+
+        ]);
     }
 
     public function uploadPicture(Request $request)

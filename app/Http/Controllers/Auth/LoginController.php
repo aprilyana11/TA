@@ -8,6 +8,7 @@ use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -47,13 +48,18 @@ class LoginController extends Controller
     public function kodularlogin(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required',
-            'password' => 'required'
+            'username' => 'required|string',
+            'password' => 'required|string'
         ]);
 
-        if (Auth::Attempt($credentials)) {
+        $user = User::where('username', $credentials['username'])->first();
+
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            // Credentials are correct
             return response()->json(['message' => 'Login Berhasil'], 200);
         }
-        return response()->json(['message' => 'Username / Password Gagal'], 404);
+
+        // Credentials are incorrect
+        return response()->json(['message' => 'Username / Password Gagal'], 401);
     }
 }
