@@ -52,17 +52,8 @@ class LoginController extends Controller
         ]);
 
         if (Auth::Attempt($credentials)) {
-            $request->session()->regenerate();
-            return redirect()->route('dashboard')
-                ->withSuccess('You have successfully logged in!');
+            return response()->json(['message' => 'Login Berhasil'], 200);
         }
-        $user = User::where('username', $request->username)->firstOrFail();
-
-        $token = $user->createToken('auth_token')->plainTextToken;
-
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'Bearer',
-        ]);
+        return response()->json(['message' => 'Username / Password Gagal'], 404);
     }
 }

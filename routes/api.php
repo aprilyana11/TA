@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrasiController;
+use App\Http\Controllers\SendDataController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,5 +18,9 @@ Route::middleware(['web'])->group(function () {
     Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 });
 
+Route::post('/send', [SendDataController::class, 'send']);
 
+Route::get('/waqms', [GrafikController::class, 'index']);
 Route::post('/register', [RegistrasiController::class, 'register'])->name('register');
+
+Route::get('/kodularProfile', [ProfileController::class, 'kodularprofile']);

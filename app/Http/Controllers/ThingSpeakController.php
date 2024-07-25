@@ -35,4 +35,3 @@ class ThingSpeakController extends Controller
         return view('thingspeak', compact('feed', 'user'));
     }
 }
-
