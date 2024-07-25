@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ThingSpeak Data</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
     <style>
@@ -27,6 +27,41 @@
 
         .profile .name {
             font-weight: bold;
+        }
+
+        .personal-exposure {
+            display: flex;
+            align-items: center;
+            background: #f5f5f5;
+            border-radius: 8px;
+            padding: 10px;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+        }
+
+        .personal-exposure i {
+            font-size: 30px;
+            color: #3b3b3b;
+        }
+
+        .personal-exposure .text {
+            margin-left: 10px;
+        }
+
+        .personal-exposure .level {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .personal-exposure .value {
+            font-size: 24px;
+            color: #ff4d4d;
+            font-weight: bold;
+        }
+
+        .personal-exposure .recommendation {
+            font-size: 14px;
+            color: #777;
         }
     </style>
 </head>
@@ -74,7 +109,6 @@
             </li>
         </ul>
     </section>
-
     <!-- SIDEBAR -->
 
     <!-- CONTENT -->
@@ -91,18 +125,16 @@
                     </button>
                 </div>
             </form>
-            <input type="checkbox" id="switch-mode" hidden />
-            <label for="switch-mode" class="switch-mode"></label>
-            <a href="#" class="notification">
-                <i class="bx bxs-bell"></i>
-                <span class="num">8</span>
-            </a>
-
         </nav>
         <!-- NAVBAR -->
 
         <!-- MAIN -->
         <main>
+            <!-- HERO SECTION -->
+            <div class="hero">
+            </div>
+            <!-- HERO SECTION -->
+
             <div class="head-title">
                 <div class="left">
                     <h1>Dashboard</h1>
@@ -116,148 +148,65 @@
                         </li>
                     </ul>
                 </div>
-                <a href="#" class="btn-download">
-                    <i class="bx bxs-cloud-download"></i>
-                    <span class="text">Download PDF</span>
-                </a>
             </div>
 
-
-            <!DOCTYPE html>
-            <html lang="en">
-
-            <head>
-                <meta charset="UTF-8">
-                <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Personal Exposure</title>
-                <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
-                <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-                <style>
-                    i.bx {
-                        font-size: 24px;
-                        display: inline-block;
-                        vertical-align: middle;
-                    }
-
-                    .profile {
-                        display: flex;
-                        align-items: center;
-                    }
-
-                    .profile img {
-                        border-radius: 50%;
-                        margin-right: 10px;
-                    }
-
-                    .profile .name {
-                        font-weight: bold;
-                    }
-
-                    .container {
-                        padding: 20px;
-                        max-width: 600px;
-                        margin: auto;
-                        background: #f4f4f4;
-                        border-radius: 10px;
-                        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-                        text-align: center;
-                    }
-
-                    h1 {
-                        text-align: center;
-                        margin-bottom: 20px;
-                    }
-
-                    .result {
-                        font-size: 24px;
-                        font-weight: bold;
-                        color: #333;
-                        margin: 20px 0;
-                    }
-
-                    .alert {
-                        padding: 10px;
-                        background-color: #4CAF50;
-                        color: white;
-                        margin-bottom: 15px;
-                    }
-
-                    .alert-success {
-                        background-color: #4CAF50;
-                    }
-                </style>
-            </head>
-
-
-            </div>
-            </div>
-</body>
-
-</html>
-
-
-</div>
-</div>
-</div>
-</div>
-</li>
-</ul>
-
-<ul class="box-info">
-    <li>
-        <i class="bx bxs-cloud-rain"></i>
-        <span class="text">
-            <h3>{{ $feed['field1'] ?? '8' }} µg/m³</h3>
-            <p>PM2.5</p>
-        </span>
-    </li>
-    <li>
-        <i class="bx bxs-cloud"></i>
-        <span class="text">
-            <h3>{{ $feed['field2'] ?? '9' }} µg/m³</h3>
-            <p>PM10</p>
-        </span>
-    </li>
-    <li>
-        <i class="bx bxs-thermometer"></i>
-        <span class="text">
-            <h3>{{ $feed['field3'] ?? 'N/A' }} °C</h3>
-            <p>Temperature</p>
-        </span>
-    </li>
-    <li>
-        <i class="bx bxs-droplet"></i>
-        <span class="text">
-            <h3>{{ $feed['field4'] ?? 'N/A' }} %</h3>
-            <p>Humidity</p>
-        </span>
-    </li>
-    <li>
-        <i class="bx bxs-gas-pump"></i>
-        <span class="text">
-            <h3>{{ $feed['field5'] ?? 'N/A' }} ppm</h3>
-            <p>TVOC</p>
-        </span>
-    </li>
-    <li>
-        <i class="bx bxs-cloud"></i>
-        <span class="text">
-            <h3>{{ $feed['field6'] ?? 'N/A' }} ppm</h3>
-            <p>eCO2</p>
-        </span>
-    </li>
-    <li>
-        <i class="bx bxs-cloud-rain"></i>
-        <span class="text">
-            <h3>{{ $feed['field7'] ?? 'N/A' }} hPa</h3>
-            <p>Pressure</p>
-        </span>
-    </li>
-</ul>
-</main>
-<!-- MAIN -->
-</section>
-<!-- CONTENT -->
+            <ul class="box-info">
+                <li>
+                    <i class="bx bxs-cloud-rain"></i>
+                    <span class="text">
+                        <p>PM2.5</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="bx bxs-cloud"></i>
+                    <span class="text">
+                        <p>PM10</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="bx bxs-thermometer"></i>
+                    <span class="text">
+                        <p>Temperature</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="bx bxs-droplet"></i>
+                    <span class="text">
+                        <p>Humidity</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="bx bxs-gas-pump"></i>
+                    <span class="text">
+                        <p>TVOC</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="bx bxs-cloud"></i>
+                    <span class="text">
+                        <p>eCO2</p>
+                    </span>
+                </li>
+                <li>
+                    <i class="bx bxs-cloud-rain"></i>
+                    <span class="text">
+                        <p>Pressure</p>
+                    </span>
+                </li>
+                <!-- Personal Exposure Box -->
+                <li class="personal-exposure">
+                    <i class="bx bxs-face-mask"></i>
+                    <span class="text">
+                        <p class="level">{{ $exposure_level }}</p>
+                        <p class="value">{{ $dosage }}</p>
+                        <p class="recommendation">{{ $recommendation_time }}</p>
+                    </span>
+                </li>
+            </ul>
+        </main>
+        <!-- MAIN -->
+    </section>
+    <!-- CONTENT -->
 </body>
 
 </html>
