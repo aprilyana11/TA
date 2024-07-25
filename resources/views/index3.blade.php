@@ -198,8 +198,8 @@
                     <i class="bx bxs-face-mask"></i>
                     <span class="text">
                         <p class="level">{{ $exposure_level }}</p>
-                        <p class="value">{{ $dosage }}</p>
-                        <p class="recommendation">{{ $recommendation_time }}</p>
+                        <p class="value">{{ $exposureValue }}</p>
+                        <p class="recommendation">{{ $recommendationTime }}</p>
                     </span>
                 </li>
             </ul>

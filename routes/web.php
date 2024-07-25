@@ -2,12 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ThingSpeakController;
-
+use App\Http\Controllers\PersonalExposureController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
-use App\Http\Controllers\PersonalExposureController;
 
 
 /*
@@ -23,9 +22,7 @@ use App\Http\Controllers\PersonalExposureController;
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-    Route::get('/dashboard', function () {
-        return view('index3');
-    })->name('dashboard');
+    Route::get('/dashboard', [PersonalExposureController::class, 'showPersonalExposure'])->name('dashboard');
 });
 
 
@@ -50,9 +47,5 @@ Route::get('/datamaps', function () {
 
 Route::get('/thingspeak', [ThingSpeakController::class, 'index']);
 
-
-
-// routes/web.php
-Route::post('/profile/upload', [ProfileController::class, 'uploadPicture'])->name('profile.upload');
-Route::post('/profile/update', [ProfileController::class, 'updateProfile'])->name('profile.update');
-Route::post('/profile/password/update', [ProfileController::class, 'updatePassword'])->name('password.update');
+Route::get('/personal-exposure', [PersonalExposureController::class, 'showPersonalExposure'])->name('personal.exposure');
+Route::get('/kodularlogin', [LoginController::class, 'kodularlogin']);

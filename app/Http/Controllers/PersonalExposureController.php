@@ -1,0 +1,74 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Models\PersonalExposure;
+use App\Models\User; // Import model User jika diperlukan
+
+class PersonalExposureController extends Controller
+{
+    public function showPersonalExposure()
+    {
+        // Ambil data dari database
+        $user = Auth::user();
+        $weight = $user->weight; // Berat badan dari user
+
+        // Data contoh untuk perhitungan
+        // $concentration = 100; // nilai konsentrasi, ini nanti diganti dengan data dari Thingspeak
+
+        // Ambil nilai konsentrasi PM2.5 dari Thingspeak
+        // $concentration = $this->getPM25Concentration();
+        $concentration = [];
+
+        // Jika gagal mendapatkan nilai dari Thingspeak, gunakan nilai default
+        if (!$concentration) {
+            $concentration = 100; // Nilai default jika gagal mengambil dari Thingspeak
+        }
+
+        $intensity = 20; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
+        $activityFactor = 1; // nilai faktor aktivitas
+        $residenceFactor = 1; // nilai faktor residensi
+
+        // Hitung dosis paparan
+        $dose = $concentration * $intensity * $activityFactor * $residenceFactor / $weight;
+
+        // Data ditampilkan di view
+        $exposure_level = 'Tidak sehat bagi kelompok sensitif'; // harus diubah sesuai dengan logika
+        $exposureValue = round($dose); // Pembulatan dosis
+        $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
+
+        return view('index3', [
+            'exposure_level' => $exposure_level,
+            'exposureValue' => $exposureValue,
+            'recommendationTime' => $recommendationTime
+        ]);
+    }
+
+    private function getPM25Concentration()
+    {
+        // Channel ID dan API Key dari Thingspeak
+        // $channelId = 'YOUR_CHANNEL_ID';
+        // $apiKey = 'YOUR_API_KEY';
+
+        // URL untuk mengambil data dari Thingspeak
+        // $url = "https://api.thingspeak.com/channels/$channelId/fields/1/last.json?api_key=$apiKey";
+
+        // Mengambil data dari Thingspeak menggunakan file_get_contents()
+        // $response = file_get_contents($url);
+
+        // Menangani response JSON
+        // $data = json_decode($response, true);
+
+        // Memeriksa apakah data berhasil diambil
+        // if (isset($data['field1'])) {
+        // Mengambil nilai konsentrasi PM2.5 dari response
+        // $concentration = $data['field1'];
+        // return $concentration;
+        // } else {
+        // Gagal mengambil nilai konsentrasi PM2.5 dari Thingspeak
+        // return null;
+        // }
+    }
+}
