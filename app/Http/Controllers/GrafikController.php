@@ -14,7 +14,7 @@ class GrafikController extends Controller
         $oneHourAgo = $now->copy()->subHour();
 
         // Retrieve data from the database
-        $data = DB::table('waqms')
+        $data = DB::table('waqms_valid')
             ->whereBetween('created_at', [$oneHourAgo, $now])
             ->orderBy('created_at')
             ->get();
