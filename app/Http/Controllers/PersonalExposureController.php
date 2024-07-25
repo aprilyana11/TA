@@ -28,16 +28,13 @@ class PersonalExposureController extends Controller
         $concentration = [];
 
         // Jika gagal mendapatkan nilai dari Thingspeak, gunakan nilai default
-        if (!$concentration) {
-            $concentration = 100; // Nilai default jika gagal mengambil dari Thingspeak
-        }
 
         $intensity = 20; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
         $activityFactor = 1; // nilai faktor aktivitas
         $residenceFactor = 1; // nilai faktor residensi
-
+        $pm25 = $data['pm25'];
         // Hitung dosis paparan
-        $dose = $concentration * $intensity * $activityFactor * $residenceFactor / $weight;
+        $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
 
         // Data ditampilkan di view
         $exposure_level = 'Tidak sehat bagi kelompok sensitif'; // harus diubah sesuai dengan logika
