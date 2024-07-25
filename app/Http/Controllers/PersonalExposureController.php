@@ -5,12 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PersonalExposure;
-use App\Models\User; // Import model User jika diperlukan
+use App\Models\User;
+use App\Models\WAQMS_Valid;
+// use Carbon\Carbon;
+
 
 class PersonalExposureController extends Controller
 {
     public function showPersonalExposure()
     {
+        $data = WAQMS_Valid::latest('created_at')->first();
+
         // Ambil data dari database
         $user = Auth::user();
         $weight = $user->weight; // Berat badan dari user
@@ -40,6 +45,15 @@ class PersonalExposureController extends Controller
         $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
         return view('index3', [
+            'created_at' => $data['created_at'],
+            'pm25' => $data['pm25'],
+            'pm10' => $data['pm10'],
+            'temperature' => $data['temperature'],
+            'humidity' => $data['humidity'],
+            'pressure' => $data['pressure'],
+            'tvoc' => $data['tvoc'],
+            'eco2' => $data['eco2'],
+
             'exposure_level' => $exposure_level,
             'exposureValue' => $exposureValue,
             'recommendationTime' => $recommendationTime

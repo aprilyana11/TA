@@ -15,8 +15,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['web'])->group(function () {
     Route::post('/login', [LoginController::class, 'actionlogin'])->name('actionlogin');
     Route::post('/logout', [LoginController::class, 'actionlogout'])->name('actionlogout');
-    Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 });
+Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 
 Route::post('/send', [SendDataController::class, 'send']);
 

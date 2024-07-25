@@ -154,43 +154,50 @@
                 <li>
                     <i class="bx bxs-cloud-rain"></i>
                     <span class="text">
-                        <p>PM2.5</p>
+                        <p>PM2.5 </p>
+                        <p>{{ $pm25 }}</p>
                     </span>
                 </li>
                 <li>
                     <i class="bx bxs-cloud"></i>
                     <span class="text">
                         <p>PM10</p>
+                        <p>{{$pm10}}</p>
                     </span>
                 </li>
                 <li>
                     <i class="bx bxs-thermometer"></i>
                     <span class="text">
                         <p>Temperature</p>
+                        <p>{{$temperature}}</p>
                     </span>
                 </li>
                 <li>
                     <i class="bx bxs-droplet"></i>
                     <span class="text">
                         <p>Humidity</p>
+                        <p>{{$humidity}}</p>
                     </span>
                 </li>
                 <li>
                     <i class="bx bxs-gas-pump"></i>
                     <span class="text">
                         <p>TVOC</p>
+                        <p>{{$tvoc}}</p>
                     </span>
                 </li>
                 <li>
                     <i class="bx bxs-cloud"></i>
                     <span class="text">
                         <p>eCO2</p>
+                        <p>{{$eco2}}</p>
                     </span>
                 </li>
                 <li>
                     <i class="bx bxs-cloud-rain"></i>
                     <span class="text">
                         <p>Pressure</p>
+                        <p>{{$pressure}}</p>
                     </span>
                 </li>
                 <!-- Personal Exposure Box -->

@@ -36,7 +36,7 @@ class WAQMSSeeder extends Seeder
 
         $chunks = array_chunk($data, 1000);
         foreach ($chunks as $chunk) {
-            DB::table('waqms')->insert($chunk);
+            DB::table('waqms_valid')->insert($chunk);
         }
     }
 }
