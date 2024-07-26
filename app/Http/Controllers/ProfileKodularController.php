@@ -25,7 +25,8 @@ class ProfileKodularController extends Controller
 
         return response()->json([
             "username" => $user['username'],
-            "weight" => $user['weight']
+            "weight" => $user['weight'],
+            "gender" => $user['gender']
         ]);
     }
     public function kodularUpdateWeight(Request $request)
