@@ -56,6 +56,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#C1E0A2FE'],
           xaxis: {
             type: 'datetime',
             labels: {
@@ -86,6 +87,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
@@ -116,6 +118,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#C1E0A2FE'],
           xaxis: {
             type: 'datetime',
             labels: {
@@ -146,6 +149,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
@@ -176,6 +180,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#C1E0A2FE'],
           xaxis: {
             type: 'datetime',
             labels: {
@@ -206,6 +211,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
@@ -236,6 +242,7 @@
             type: 'bar', // Changed to bar chart
             height: 500
           },
+          colors: ['#C1E0A2FE'],
           xaxis: {
             type: 'datetime',
             labels: {

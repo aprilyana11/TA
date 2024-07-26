@@ -1,5 +1,5 @@
 body {
-    background: #a8e6cf; /* Ubah nilai ini sesuai warna hijau yang diinginkan */
+    background: #d3f19d;
     margin-top: 20px;
 }
 
@@ -10,7 +10,7 @@ body {
 
 .btn-default {
     border-color: rgba(24, 28, 33, 0.1);
-    background: rgba(173, 205, 118, 0);
+    background: rgba(0, 0, 0, 0);
     color: #4e5155;
 }
 
@@ -19,9 +19,9 @@ label.btn {
 }
 
 .btn-outline-primary {
-    border-color: #a3e075;
-    background: #95ba6e;
-    color: #95ba6e;
+    border-color: #527321fe;
+    background: transparent;
+    color: #26b4ff;
 }
 
 .btn {
@@ -34,7 +34,7 @@ label.btn {
 
 .btn-facebook {
     border-color: rgba(0, 0, 0, 0);
-    background: #84bc5f;
+    background: #3b5998;
     color: #fff;
 }
 

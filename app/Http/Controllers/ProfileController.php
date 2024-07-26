@@ -18,7 +18,7 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        return view('profile.index', compact('user'));
+        return view('profile', compact('user'));
     }
 
     public function uploadPicture(Request $request)
