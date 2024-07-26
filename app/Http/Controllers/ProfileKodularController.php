@@ -18,19 +18,15 @@ class ProfileKodularController extends Controller
     public function index(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|string',
-            'password' => 'required|string'
+            'username' => 'required'
         ]);
 
         $user = User::where('username', $credentials['username'])->first();
 
-        if ($user && Hash::check($credentials['password'], $user->password)) {
-            // Credentials are correct
-            return response()->json(['message' => 'Login Berhasil'], 200);
-        }
-
-        // Credentials are incorrect
-        return response()->json(['message' => 'Username / Password Gagal'], 401);
+        return response()->json([
+            "username" => $user['username'],
+            "weight" => $user['weight']
+        ]);
     }
     public function kodularUpdateWeight(Request $request)
     {
@@ -40,6 +36,7 @@ class ProfileKodularController extends Controller
             return response()->json(['message' => 'User not found'], 404);
         }
         $user->weight = $request->weight;
+        $user->save();
     }
 
     public function updateProfile(Request $request)

@@ -26,7 +26,6 @@ Route::get('/location', [TrackingController::class, 'index']);
 Route::get('/data/location', [TrackingController::class, 'database']);
 Route::get('/data/valid', [ParameterController::class, 'index'])->name('data.valid');
 
-Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 
 Route::post('/send', [SendDataController::class, 'send']);
 
@@ -36,4 +35,6 @@ Route::post('/register', [RegistrasiController::class, 'register'])->name('regis
 
 // BUAT HP
 Route::get('/kodularProfile', [ProfileKodularController::class, 'index']);
-Route::put('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpdateWeight']);
+Route::post('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpdateWeight']);
+
+Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
