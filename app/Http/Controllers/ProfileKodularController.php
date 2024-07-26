@@ -31,13 +31,37 @@ class ProfileKodularController extends Controller
     }
     public function kodularUpdateWeight(Request $request)
     {
-        $user = User::where('username', $request->username)->get();
+        $user = User::where('username', $request->input('username'))->first();
 
         if (!$user) {
             return response()->json(['message' => 'User not found'], 404);
         }
-        $user->weight = $request->weight;
+        // Update the user's weight
+        $user->weight = $request->input('weight');
+        // /** @var \App\Models\User $user **/
         $user->save();
+        return response()->json(['message' => 'Weight updated successfully.']);
+    }
+
+    public function kodularUpdatePassword(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required',
+            'newPassword' => 'required'
+        ]);
+
+        $user = User::where('username', $request->input('username'))->first();
+
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            // Update the user's weight
+            $user->password = Hash::make($request->new_password);
+            /** @var \App\Models\User $user **/
+            $user->save();
+
+
+            return response()->json(['message' => 'Password updated successfully.']);
+        }
     }
 
     public function updateProfile(Request $request)

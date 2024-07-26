@@ -65,17 +65,4 @@ class LoginController extends Controller
         // Credentials are incorrect
         return response()->json(['message' => 'Username / Password Gagal'], 401);
     }
-    public function kodularUpdateWeight(Request $request)
-    {
-        $credentials = $request->validate([
-            'username' => 'required',
-            'weight' => 'required'
-        ]);
-
-        $user = User::where('username', $credentials['username'])->first();
-        $user->weight = $request->weight;
-
-        // Credentials are incorrect
-        return response()->json(['message' => 'Weight berhasil Diubah'], 200);
-    }
 }

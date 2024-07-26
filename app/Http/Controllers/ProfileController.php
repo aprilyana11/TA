@@ -62,24 +62,4 @@ class ProfileController extends Controller
 
         return redirect()->route('profile.show')->with('success', 'Password updated successfully.');
     }
-
-    public function uploadProfilePicture(Request $request)
-    {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        if ($request->hasFile('profile_picture')) {
-            $image = $request->file('profile_picture');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/profile_pictures', $imageName); // simpan gambar di storage/app/public/profile_pictures
-
-            // Simpan nama gambar ke dalam tabel user
-            $user = auth()->user();
-            $user->profile_picture = 'profile_pictures/' . $imageName; // path relatif ke direktori storage/app/public
-
-        }
-
-        return back()->with('success', 'Profile picture has been uploaded.');
-    }
 }

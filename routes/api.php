@@ -35,6 +35,7 @@ Route::post('/register', [RegistrasiController::class, 'register'])->name('regis
 
 // BUAT HP
 Route::get('/kodularProfile', [ProfileKodularController::class, 'index']);
-Route::post('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpdateWeight']);
+Route::get('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpdateWeight']);
+Route::get('/kodularUpdatePassword', [ProfileKodularController::class, 'kodularUpdatePassword']);
 
 Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
