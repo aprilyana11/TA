@@ -29,11 +29,8 @@
           <li class="nav-item">
             <a class="nav-link" href="/data-location">location</a>
           <li class="nav-item">
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard
-
-              <!-- Add more navigation items as needed -->
+            <a class="nav-link" href="/dashboard">Dashboard</a>
+            <!-- Add more navigation items as needed -->
         </ul>
       </div>
     </div>
@@ -53,12 +50,8 @@
                 <tr>
                   <th>Date</th>
                   <th>Time</th>
-                  <th>Temperature (C)</th>
-                  <th>Humidity (%)</th>
-                  <th>PM2.5 (%)</th>
-                  <th>PM10</th>
-                  <th>TVOC</th>
-                  <th>ECO2</th>
+                  <th>Longitude</th>
+                  <th>Latitude</th>
                 </tr>
               </thead>
               <tbody id="airQualityTableBody">
@@ -77,7 +70,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
       // Fetch air quality data from the API
-      fetch('/api/data/valid')
+      fetch('/api/data/location')
         .then(response => response.json())
         .then(airQualityData => {
           var tableBody = document.getElementById("airQualityTableBody");
@@ -94,33 +87,17 @@
             newRow.appendChild(timeCell);
 
             var tempCell = document.createElement("td");
-            tempCell.textContent = data.temperature + " C";
+            tempCell.textContent = data.latitude;
             newRow.appendChild(tempCell);
 
             var humidityCell = document.createElement("td");
-            humidityCell.textContent = data.humidity + " %";
+            humidityCell.textContent = data.longitude
             newRow.appendChild(humidityCell);
-
-            var pm25Cell = document.createElement("td");
-            pm25Cell.textContent = data.pm25 + "ugr/m^3";
-            newRow.appendChild(pm25Cell);
-
-            var pm10Cell = document.createElement("td");
-            pm10Cell.textContent = data.pm10;
-            newRow.appendChild(pm10Cell);
-
-            var tvocCell = document.createElement("td");
-            tvocCell.textContent = data.tvoc;
-            newRow.appendChild(tvocCell);
-
-            var eco2Cell = document.createElement("td");
-            eco2Cell.textContent = data.eco2;
-            newRow.appendChild(eco2Cell);
 
             tableBody.appendChild(newRow);
           });
         })
-        .catch(error => console.error('Error fetching air quality data:', error));
+        .catch(error => console.error('Error fetching location:', error));
     });
   </script>
 </body>

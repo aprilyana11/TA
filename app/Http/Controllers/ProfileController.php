@@ -27,19 +27,7 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function uploadPicture(Request $request)
-    {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
 
-        $imageName = time() . '.' . $request->profile_picture->extension();
-        $request->profile_picture->move(public_path('images'), $imageName);
-
-        // Here you can save the image path to the database if needed
-        $user = auth()->user();
-        $user->profile_picture = $imageName;
-    }
 
     public function updateProfile(Request $request)
     {
@@ -68,6 +56,7 @@ class ProfileController extends Controller
         }
 
         $user->password = Hash::make($request->new_password);
+        /** @var \App\Models\User $user **/
         $user->save();
 
 

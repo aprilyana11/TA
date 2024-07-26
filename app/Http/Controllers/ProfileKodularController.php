@@ -17,28 +17,29 @@ class ProfileKodularController extends Controller
 
     public function index(Request $request)
     {
-        $user = User::where("username", $request->username)->first();
-        return response()->json([
-            'username' => $user->username,
-            'gender' => $user->gender,
-            'weight' => $user->weight,
-            'phone_number' => $user->phone_number,
-
+        $credentials = $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string'
         ]);
+
+        $user = User::where('username', $credentials['username'])->first();
+
+        if ($user && Hash::check($credentials['password'], $user->password)) {
+            // Credentials are correct
+            return response()->json(['message' => 'Login Berhasil'], 200);
+        }
+
+        // Credentials are incorrect
+        return response()->json(['message' => 'Username / Password Gagal'], 401);
     }
-
-    public function uploadPicture(Request $request)
+    public function kodularUpdateWeight(Request $request)
     {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
+        $user = User::where('username', $request->username)->get();
 
-        $imageName = time() . '.' . $request->profile_picture->extension();
-        $request->profile_picture->move(public_path('images'), $imageName);
-
-        // Here you can save the image path to the database if needed
-        $user = auth()->user();
-        $user->profile_picture = $imageName;
+        if (!$user) {
+            return response()->json(['message' => 'User not found'], 404);
+        }
+        $user->weight = $request->weight;
     }
 
     public function updateProfile(Request $request)

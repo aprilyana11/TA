@@ -8,6 +8,8 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\GrafikController;
+use App\Http\Controllers\ParameterController;
+use App\Http\Controllers\TrackingController;
 
 
 
@@ -25,6 +27,16 @@ use App\Http\Controllers\GrafikController;
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/dashboard', [PersonalExposureController::class, 'showPersonalExposure'])->name('dashboard');
+    Route::get('/waqmsmaps', [TrackingController::class, 'index']);
+    Route::get('/waqmsmaps', function () {
+        return view('mapsgps');
+    });
+    Route::get('/data-parameter', function () {
+        return view('tabeldata');
+    });
+    Route::get('/data-location', function () {
+        return view('tabeldatalocation');
+    });
 });
 
 
@@ -37,11 +49,9 @@ Route::get('/register', [RegistrasiController::class, 'index']);
 
 Route::get('/login', [LoginController::class, 'login'])->name('login');
 
+
 Route::get('/grafikwaqms', function () {
     return view('grafik');
-});
-Route::get('/waqmsmaps', function () {
-    return view('mapsgps');
 });
 Route::get('/datamaps', function () {
     return view('tabeldata');
@@ -50,4 +60,5 @@ Route::get('/datamaps', function () {
 Route::get('/thingspeak', [ThingSpeakController::class, 'index']);
 
 Route::get('/personal-exposure', [PersonalExposureController::class, 'showPersonalExposure'])->name('personal.exposure');
-Route::get('/kodularlogin', [LoginController::class, 'kodularlogin']);
+
+// BUAT HP
