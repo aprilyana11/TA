@@ -18,7 +18,13 @@ class ProfileController extends Controller
     public function show()
     {
         $user = Auth::user();
-        return view('profile', compact('user'));
+        $user = auth()->user();
+        $username = $user->username;
+        $weight = $user->weight;
+        return view('profile', [
+            'username' => $username,
+            'weight' => $weight
+        ]);
     }
 
     public function uploadPicture(Request $request)
@@ -38,15 +44,13 @@ class ProfileController extends Controller
     public function updateProfile(Request $request)
     {
         $request->validate([
-            'name' => 'required|string|max:255',
-            'weight' => 'required|numeric',
+            'weight' => 'required',
         ]);
 
         $user = auth()->user();
-        $user->name = $request->name;
         $user->weight = $request->weight;
-
-
+        // Save the user with the updated weight
+        $user->save();
         return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
     }
 
@@ -54,7 +58,7 @@ class ProfileController extends Controller
     {
         $request->validate([
             'current_password' => 'required',
-            'new_password' => 'required|string|min:8|confirmed',
+            'new_password' => 'required',
         ]);
 
         $user = auth()->user();
@@ -64,6 +68,7 @@ class ProfileController extends Controller
         }
 
         $user->password = Hash::make($request->new_password);
+        $user->save();
 
 
         return redirect()->route('profile.show')->with('success', 'Password updated successfully.');

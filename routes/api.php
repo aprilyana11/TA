@@ -16,6 +16,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::middleware(['web'])->group(function () {
     Route::post('/login', [LoginController::class, 'actionlogin'])->name('actionlogin');
     Route::post('/logout', [LoginController::class, 'actionlogout'])->name('actionlogout');
+    Route::put('/updateprofile', [ProfileController::class, 'updateProfile'])->name('profile.update');
+    Route::put('/updatepassword', [ProfileController::class, 'updatePassword'])->name('profile.passchange');
 });
 Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 

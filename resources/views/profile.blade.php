@@ -49,36 +49,51 @@
                 </div>
                 <div class="col-md-9">
                     <div class="text-right mt-3 mb-3">
-                        <button type="button" class="btn btn-primary">Save changes</button>&nbsp;
-                        <button type="button" class="btn btn-default">Cancel</button>
+                        <!-- Buttons if needed -->
                     </div>
                     <div class="tab-content">
+                        <!-- General Information Tab -->
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body">
                                 <div class="form-group">
                                     <label class="form-label">Username</label>
-                                    <input type="text" class="form-control mb-1" value="nmaxwell">
+                                    <p>{{ $username }}</p>
                                 </div>
-                                <div class="form-group">
-                                    <label class="form-label">Berat Badan</label>
-                                    <input type="text" class="form-control" value="70 kg">
-                                </div>
+                                <form action="{{ route('profile.update') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label class="form-label">Berat Badan</label>
+                                        <div style="display: flex; align-items: center;">
+                                            <input type="text" class="form-control" name="weight" value="{{ $weight }}" id="weight" style="width: auto; display: inline;">
+                                            <p style="margin-left: 5px; margin-bottom: 0;">kg</p>
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                </form>
                             </div>
                         </div>
+
+                        <!-- Change Password Tab -->
                         <div class="tab-pane fade" id="account-change-password">
                             <div class="card-body pb-2">
-                                <div class="form-group">
-                                    <label class="form-label">Current password</label>
-                                    <input type="password" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">New password</label>
-                                    <input type="password" class="form-control">
-                                </div>
-                                <div class="form-group">
-                                    <label class="form-label">Repeat new password</label>
-                                    <input type="password" class="form-control">
-                                </div>
+                                <form action="{{ route('profile.passchange') }}" method="POST">
+                                    @csrf
+                                    @method('PUT')
+                                    <div class="form-group">
+                                        <label class="form-label">Current password</label>
+                                        <input type="password" class="form-control" name="current_password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">New password</label>
+                                        <input type="password" class="form-control" name="new_password" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">Repeat new password</label>
+                                        <input type="password" class="form-control" name="new_password_confirmation" required>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary">Update Password</button>
+                                </form>
                             </div>
                         </div>
                     </div>
