@@ -60,7 +60,9 @@ class ProfileKodularController extends Controller
             $user->save();
 
 
-            return response()->json(['message' => 'Password updated successfully.']);
+            return response()->json(['message' => 'Password updated successfully.'], 200);
+        } else {
+            return response()->json(['message' => 'Wrong Password / Username'], 201);
         }
     }
 
