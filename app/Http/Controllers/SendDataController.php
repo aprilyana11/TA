@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\WAQMS_Location;
 use App\Models\WAQMS_Raw;
 use App\Models\WAQMS_Valid;
 use Illuminate\Http\Request;
@@ -31,8 +32,8 @@ class SendDataController extends Controller
         if (isset($data['pm10']) && ($data['pm10'] < 0 || $data['pm10'] > 1000)) {
             $data['pm10'] = null;
         }
-        if (isset($data['temp']) && ($data['temp'] < -40 || $data['temp'] > 85)) {
-            $data['temp'] = null;
+        if (isset($data['temperature']) && ($data['temperature'] < -40 || $data['temperature'] > 85)) {
+            $data['temperature'] = null;
         }
         if (isset($data['humidity']) && ($data['humidity'] < 0 || $data['humidity'] > 100)) {
             $data['humidity'] = null;
@@ -43,6 +44,8 @@ class SendDataController extends Controller
 
         // Create entry in WAQMS_Valid
         WAQMS_Valid::create($data);
+
+        WAQMS_Location::create($data);
 
         return response()->json(['message' => 'Data processed successfully.']);
     }

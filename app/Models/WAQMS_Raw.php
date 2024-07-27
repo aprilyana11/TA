@@ -9,6 +9,6 @@ class WAQMS_Raw extends Model
 {
     use HasFactory;
     protected $table = 'waqms_raw';
-
+    public $timestamps = false;
     protected $fillable = ['id', 'created_at', 'pm25', 'pm10', 'eco2', 'tvoc', 'temperature', 'humidity', 'pressure'];
 }
