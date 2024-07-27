@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personal Air Monitoring</title>
   <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="css/style1.css" />
+  <link rel="stylesheet" href={{asset("css/style1.css")}} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Roboto:wght@300;400;500;700&family=Oswald:wght@600&display=swap" rel="stylesheet" />
@@ -49,12 +49,6 @@
         <button class="search-btn" aria-label="Search">
           <ion-icon name="search-outline"></ion-icon>
         </button>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url('/login') }}">
-            <div class="green-box">
-              <span>Login</span>
-            </div>
-          </a>
         </li>
         <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
       </div>
@@ -65,7 +59,7 @@
       <section class="hero" id="home">
         <div class="container">
           <p class="section-subtitle">
-            <img src="{{ asset('img/subtitle-img-white.png')}}" width="32" height="7" alt="Wavy line" />
+            <img src="{{ asset('images/subtitle-img-white.png')}}" width="32" height="7" alt="Wavy line" />
             <span>Selamat Datang di WAQMS</span>
           </p>
           <h2 class="h1 hero-title">
@@ -75,6 +69,11 @@
             <a class="nav-link" href="{{ url('/register') }}">
               <div class="green-box">
                 <span>Register</span>
+              </div>
+            </a>
+            <a class="nav-link" href="{{ url('/login') }}">
+              <div class="green-box">
+                <span>Login</span>
               </div>
             </a>
           </li>
@@ -129,18 +128,18 @@
             <h2 class="deco-title">Tentang kami</h2>
             <div class="banner-row">
               <div class="banner-col">
-                <img src="{{ asset('img/a.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
-                <img src="{{ asset('img/b.png')}}" width="386" height="250" loading="lazy" alt="" class="about-img about-img-2 w-100" />
+                <img src="{{ asset('images/a.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
+                <img src="{{ asset('images/b.png')}}" width="386" height="250" loading="lazy" alt="" class="about-img about-img-2 w-100" />
               </div>
               <div class="banner-col">
-                <img src="{{ asset('img/c.png')}}" width="250" height="277" loading="lazy" alt="" class="about-img about-img-3 w-100" />
-                <img src="{{ asset('img/d.png')}}" width="260" height="300" loading="lazy" alt="" class="about-img w-100" />
+                <img src="{{ asset('images/c.png')}}" width="250" height="277" loading="lazy" alt="" class="about-img about-img-3 w-100" />
+                <img src="{{ asset('images/d.png')}}" width="260" height="300" loading="lazy" alt="" class="about-img w-100" />
               </div>
             </div>
           </div>
           <div class="about-content">
             <p class="section-subtitle">
-              <img src="{{ asset('img/subtitle')
+              <img src="{{ asset('images/subtitle')
                 <span>Why ?</span>
               </p>
 
@@ -222,7 +221,7 @@
           <div class="container">
             <p class="section-subtitle">
               <img
-                src="./assets/images/subtitle-img-green.png"
+                src="./assets/imagess/subtitle-img-green.png"
                 width="32"
                 height="7"
                 alt="Wavy line"

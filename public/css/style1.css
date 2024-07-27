@@ -1250,7 +1250,7 @@ body {
    */
 
     .hero {
-        background-image: url("/img/home.jpg");
+        background-image: url("https://air.gradien.my.id/assets/images/home.jpg");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: left;
@@ -1486,5 +1486,17 @@ body {
 
     .deco-img {
         left: -35px;
+    }
+    .nav-item {
+        display: flex;
+        align-items: center; /* Vertically centers the items if they have different heights */
+    }
+
+    .nav-link {
+        margin-right: 15px; /* Add some space between the links */
+    }
+
+    .nav-link:last-child {
+        margin-right: 0; /* Remove the margin for the last item */
     }
 }
