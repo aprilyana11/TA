@@ -17,11 +17,11 @@
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-      @if(session('error'))
-            <div class="alert alert-danger">
-                <b>Opps!</b> {{session('error')}}
-            </div>
-            @endif
+        @if(session('error'))
+        <div class="alert alert-danger">
+          <b>Opps!</b> {{session('error')}}
+        </div>
+        @endif
         <form action="{{ route('actionlogin') }}" method="post">
           @csrf
           <h2 class="title">Sign in</h2>
@@ -42,7 +42,6 @@
       <div class="panel left-panel">
         <div class="content">
           <h3>Welcome Back!</h3>
-          <p>To keep connected with us please login with your personal info</p>
         </div>
         <img src="img/log.svg" class="image" alt="" />
       </div>

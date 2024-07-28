@@ -22,8 +22,7 @@ class ParameterController extends Controller
     }
     public function Kodular()
     {
-        $data = WAQMS_Valid::first()
-            ->get();
+        $data = WAQMS_Valid::orderBy('created_at', 'desc')->first();
         return response()->json($data);
     }
 }

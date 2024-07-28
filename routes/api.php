@@ -25,6 +25,7 @@ Route::middleware(['web'])->group(function () {
 Route::get('/location', [TrackingController::class, 'index']);
 Route::get('/data/location', [TrackingController::class, 'database']);
 Route::get('/data/valid', [ParameterController::class, 'index'])->name('data.valid');
+Route::get('/data/kodular', [ParameterController::class, 'kodular']);
 
 
 Route::post('/send', [SendDataController::class, 'send']);
