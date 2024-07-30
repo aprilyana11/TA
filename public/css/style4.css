@@ -10,7 +10,7 @@ body {
     height: 100vh;
     justify-content: center;
     align-items: center;
-    background-image: url("/img/regis.jpg");
+    background-image: url("https://air.gradien.my.id/images/regis.jpg");
     background-size: cover;
 }
 
