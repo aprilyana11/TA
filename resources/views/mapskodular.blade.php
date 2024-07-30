@@ -10,84 +10,23 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
   <style>
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      display: flex;
+      flex-direction: column;
+    }
+
     #map {
-      height: 500px;
+      flex-grow: 1;
     }
   </style>
 </head>
 
 <body>
-  <!-- Top Navigation Bar -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">GPS Tracking</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/waqmsmaps">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/datamaps">Data</a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/data-location">location</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/history">History</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard
-              <!-- Add more navigation items as needed -->
-        </ul>
-      </div>
-    </div>
-  </nav>
-
   <!-- Main Content -->
-  <div class="container-fluid mt-4">
-    <div class="row">
-      <div class="col-lg-12">
-        <div id="map"></div>
-      </div>
-    </div>
-    <div class="row mt-4">
-      <div class="col-lg-12">
-        <div class="card">
-          <div class="card-header">
-            <h5 class="card-title">Last Data Received</h5>
-          </div>
-          <div class="card-body">
-            <div class="row">
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td style="width: 20%">Date</td>
-                    <td>: <span id="time_date"></span></td>
-                  </tr>
-                  <tr>
-                    <td>Time</td>
-                    <td>: <span id="time_time"></span></td>
-                  </tr>
-                  <tr>
-                    <td>Latitude</td>
-                    <td>: <span id="latitude"></span></td>
-                  </tr>
-                  <tr>
-                    <td>Longitude</td>
-                    <td>: <span id="longitude"></span></td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="map"></div>
 
   <!-- Leaflet JS -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>

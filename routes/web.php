@@ -27,7 +27,7 @@ use App\Http\Controllers\TrackingController;
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::get('/dashboard', [PersonalExposureController::class, 'showPersonalExposure'])->name('dashboard');
-    Route::get('/waqmsmaps', [TrackingController::class, 'index']);
+    // Route::get('/waqmsmaps', [TrackingController::class, 'index']);
     Route::get('/waqmsmaps', function () {
         return view('mapsgps');
     });
@@ -60,8 +60,10 @@ Route::get('/datamaps', function () {
     return view('tabeldata');
 });
 
-Route::get('/thingspeak', [ThingSpeakController::class, 'index']);
 
 Route::get('/personal-exposure', [PersonalExposureController::class, 'showPersonalExposure'])->name('personal.exposure');
 
 // BUAT HP
+Route::get('/kodularmaps', function () {
+    return view('mapskodular');
+});

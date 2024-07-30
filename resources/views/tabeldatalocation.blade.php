@@ -29,8 +29,11 @@
           <li class="nav-item">
             <a class="nav-link" href="/data-location">location</a>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard</a>
-            <!-- Add more navigation items as needed -->
+          <li class="nav-item">
+            <a class="nav-link" href="/history">History</a>
+          </li>
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+          <!-- Add more navigation items as needed -->
         </ul>
       </div>
     </div>

@@ -89,7 +89,7 @@
             <li>
                 <a href="/waqmsmaps">
                     <i class="bx bxs-map"></i>
-                    <span class="text">Maps</span>
+                    <span class="text">Tracking</span>
                 </a>
             </li>
             <li>
