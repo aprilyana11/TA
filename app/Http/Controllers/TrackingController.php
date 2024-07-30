@@ -19,6 +19,7 @@ class TrackingController extends Controller
         // Kirim data ke view
         return response()->json($locations);
     }
+
     public function database()
     {
         $day7ago = Carbon::now()->subWeek();

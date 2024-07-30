@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/data-location', function () {
         return view('tabeldatalocation');
     });
+    Route::get('/history', function () {
+        return view('History');
+    });
 });
 
 

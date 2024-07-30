@@ -29,6 +29,9 @@
           <li class="nav-item">
             <a class="nav-link" href="/data-location">location</a>
           <li class="nav-item">
+          <li class="nav-item">
+            <a class="nav-link" href="/history">History</a>
+          <li class="nav-item">
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/dashboard">Dashboard

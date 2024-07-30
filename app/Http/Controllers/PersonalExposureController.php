@@ -37,7 +37,7 @@ class PersonalExposureController extends Controller
         $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
 
         // Data ditampilkan di view
-        $exposure_level = 'Tidak sehat bagi kelompok sensitif'; // harus diubah sesuai dengan logika
+        $exposure_level = 'Tidak sehat'; // harus diubah sesuai dengan logika
         $exposureValue = round($dose); // Pembulatan dosis
         $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 

@@ -7,8 +7,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
+use App\Models\WAQMS_Valid;
 use Illuminate\Support\Facades\Auth;
-
 
 
 class ProfileKodularController extends Controller
@@ -65,58 +65,39 @@ class ProfileKodularController extends Controller
             return response()->json(['message' => 'Wrong Password / Username'], 201);
         }
     }
-
-    public function updateProfile(Request $request)
+    public function PersonalExposure(Request $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'weight' => 'required|numeric',
+        $user = User::where('username', $request->input('username'))->first();
+        $data = WAQMS_Valid::latest('created_at')->first();
+
+        // Ambil data dari database
+        $weight = $user->weight; // Berat badan dari user
+
+        $intensity = 20; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
+        $activityFactor = 1; // nilai faktor aktivitas
+        $residenceFactor = 1; // nilai faktor residensi
+        $pm25 = $data['pm25'];
+        // Hitung dosis paparan
+        $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
+
+        // Data ditampilkan di view
+        $exposure_level = 'Tidak sehat'; // harus diubah sesuai dengan logika
+        $exposureValue = round($dose); // Pembulatan dosis
+        $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
+
+        return response()->json([
+            'created_at' => $data['created_at'],
+            'pm25' => $data['pm25'],
+            'pm10' => $data['pm10'],
+            'temperature' => $data['temperature'],
+            'humidity' => $data['humidity'],
+            'pressure' => $data['pressure'],
+            'tvoc' => $data['tvoc'],
+            'eco2' => $data['eco2'],
+
+            'exposure_level' => $exposure_level,
+            'exposureValue' => $exposureValue,
+            'recommendationTime' => $recommendationTime
         ]);
-
-        $user = auth()->user();
-        $user->name = $request->name;
-        $user->weight = $request->weight;
-
-
-        return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
-    }
-
-    public function updatePassword(Request $request)
-    {
-        $request->validate([
-            'current_password' => 'required',
-            'new_password' => 'required|string|min:8|confirmed',
-        ]);
-
-        $user = auth()->user();
-
-        if (!Hash::check($request->current_password, $user->password)) {
-            return back()->withErrors(['current_password' => 'Current password is incorrect']);
-        }
-
-        $user->password = Hash::make($request->new_password);
-
-
-        return redirect()->route('profile.show')->with('success', 'Password updated successfully.');
-    }
-
-    public function uploadProfilePicture(Request $request)
-    {
-        $request->validate([
-            'profile_picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-        ]);
-
-        if ($request->hasFile('profile_picture')) {
-            $image = $request->file('profile_picture');
-            $imageName = time() . '.' . $image->getClientOriginalExtension();
-            $image->storeAs('public/profile_pictures', $imageName); // simpan gambar di storage/app/public/profile_pictures
-
-            // Simpan nama gambar ke dalam tabel user
-            $user = auth()->user();
-            $user->profile_picture = 'profile_pictures/' . $imageName; // path relatif ke direktori storage/app/public
-
-        }
-
-        return back()->with('success', 'Profile picture has been uploaded.');
     }
 }

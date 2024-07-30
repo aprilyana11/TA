@@ -20,7 +20,7 @@
         <a href="#" class="logo">WAQMS</a>
       </h1>
       <select name="language" class="lang-switch">
-        <option value="english">Indonesia</option>
+        <option value="indonesia">Indonesia</option>
       </select>
       <button class="nav-open-btn" aria-label="Open Menu" data-nav-open-btn>
         <ion-icon name="menu-outline"></ion-icon>

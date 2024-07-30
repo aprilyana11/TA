@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DataController;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ProfileController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ProfileKodularController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\SendDataController;
 use App\Http\Controllers\TrackingController;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -29,6 +31,7 @@ Route::get('/data/kodular', [ParameterController::class, 'kodular']);
 
 
 Route::post('/send', [SendDataController::class, 'send']);
+Route::get('/History/{type}', [DataController::class, 'History']);
 
 Route::get('/waqms', [GrafikController::class, 'index']);
 Route::post('/register', [RegistrasiController::class, 'register'])->name('register');
@@ -38,5 +41,5 @@ Route::post('/register', [RegistrasiController::class, 'register'])->name('regis
 Route::get('/kodularProfile', [ProfileKodularController::class, 'index']);
 Route::get('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpdateWeight']);
 Route::get('/kodularUpdatePassword', [ProfileKodularController::class, 'kodularUpdatePassword']);
-
 Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
+Route::get('/kodularExposure', [ProfileKodularController::class, 'PersonalExposure']);
