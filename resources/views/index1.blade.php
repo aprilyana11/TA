@@ -59,7 +59,7 @@
       <section class="hero" id="home">
         <div class="container">
           <p class="section-subtitle">
-            <img src="{{ asset('img/subtitle-img-white.png')}}" width="32" height="7" alt="Wavy line" />
+            <img src="{{ asset('images/subtitle-img-white.png')}}" width="32" height="7" alt="Wavy line" />
             <span>Selamat Datang di WAQMS</span>
           </p>
           <h2 class="h1 hero-title">
@@ -128,18 +128,18 @@
             <h2 class="deco-title">Tentang kami</h2>
             <div class="banner-row">
               <div class="banner-col">
-                <img src="{{ asset('img/a.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
-                <img src="{{ asset('img/b.png')}}" width="386" height="250" loading="lazy" alt="" class="about-img about-img-2 w-100" />
+                <img src="{{ asset('images/a.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
+                <img src="{{ asset('images/b.png')}}" width="386" height="250" loading="lazy" alt="" class="about-img about-img-2 w-100" />
               </div>
               <div class="banner-col">
-                <img src="{{ asset('img/c.png')}}" width="250" height="277" loading="lazy" alt="" class="about-img about-img-3 w-100" />
-                <img src="{{ asset('img/d.png')}}" width="260" height="300" loading="lazy" alt="" class="about-img w-100" />
+                <img src="{{ asset('images/c.png')}}" width="250" height="277" loading="lazy" alt="" class="about-img about-img-3 w-100" />
+                <img src="{{ asset('images/d.png')}}" width="260" height="300" loading="lazy" alt="" class="about-img w-100" />
               </div>
             </div>
           </div>
           <div class="about-content">
             <p class="section-subtitle">
-              <img src="{{ asset('img/subtitle')
+              <img src="{{ asset('images/subtitle')
                 <span>Why ?</span>
               </p>
 
