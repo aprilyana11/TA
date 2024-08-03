@@ -8,22 +8,85 @@
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <style>
+    body {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 50px;
+      background-color: #C1E0A2;
+    }
+
+    .chart-wrapper {
+      width: 95%;
+      height: 400px;
+      margin-bottom: 20px;
+      margin-top: 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      background-color: #ffff;
+      padding: 10px;
+    }
+
     .chart-container {
       width: 100%;
-      height: 500px;
-      margin-bottom: 20px;
+      height: 100%;
+    }
+
+    .back-button {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+    }
+
+    .back-button a {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      color: #fff;
+      background-color: #527321FE;
+      padding: 10px 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .back-button a:hover {
+      background-color: #435D21;
+    }
+
+    .back-button a::before {
+      content: '←';
+      margin-right: 10px;
     }
   </style>
 </head>
 
 <body>
-  <div class="chart-container" id="pm25-chart"></div>
-  <div class="chart-container" id="pm10-chart"></div>
-  <div class="chart-container" id="temperature-chart"></div>
-  <div class="chart-container" id="humidity-chart"></div>
-  <div class="chart-container" id="tvoc-chart"></div>
-  <div class="chart-container" id="eco2-chart"></div>
-  <div class="chart-container" id="pressure-chart"></div>
+  <div class="back-button">
+    <a href="/dashboard"></a>
+  </div>
+
+
+  <div class="chart-wrapper">
+    <div class="chart-container" id="pm25-chart"></div>
+  </div>
+  <div class="chart-wrapper">
+    <div class="chart-container" id="pm10-chart"></div>
+  </div>
+  <div class="chart-wrapper">
+    <div class="chart-container" id="temperature-chart"></div>
+  </div>
+  <div class="chart-wrapper">
+    <div class="chart-container" id="humidity-chart"></div>
+  </div>
+  <div class="chart-wrapper">
+    <div class="chart-container" id="tvoc-chart"></div>
+  </div>
+  <div class="chart-wrapper">
+    <div class="chart-container" id="eco2-chart"></div>
+  </div>
+  <div class="chart-wrapper">
+    <div class="chart-container" id="pressure-chart"></div>
+  </div>
 
   <script>
     // Fetch data from the API
@@ -34,7 +97,7 @@
         // Convert timestamps to ISO 8601 format
         const timestamps = data.map(item => {
           const date = new Date(item.created_at);
-          return date.toISOString(); // Convert to ISO 8601 string
+          return date.getTime(); // Use timestamp in milliseconds
         });
 
         // Prepare data for the charts
@@ -53,15 +116,14 @@
             data: pm25.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
-          colors: ['#C1E0A2FE'],
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -84,15 +146,14 @@
             data: pm10.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
           colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -115,15 +176,14 @@
             data: temperature.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
-          colors: ['#C1E0A2FE'],
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -146,15 +206,14 @@
             data: humidity.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
           colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -177,15 +236,14 @@
             data: tvoc.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
-          colors: ['#C1E0A2FE'],
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -208,15 +266,14 @@
             data: eco2.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
           colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -239,15 +296,14 @@
             data: pressure.map((value, index) => [timestamps[index], value])
           }],
           chart: {
-            type: 'bar', // Changed to bar chart
-            height: 500
+            type: 'bar',
+            height: '100%'
           },
-          colors: ['#C1E0A2FE'],
+          colors: ['#527321FE'],
           xaxis: {
             type: 'datetime',
             labels: {
-              format: 'HH:mm',
-              datetimeUTC: false,
+              format: 'HH:mm', // Format jam pada label sumbu X
             }
           },
           yaxis: {

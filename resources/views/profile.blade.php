@@ -31,13 +31,48 @@
             background-color: #527321FE;
             border-color: #527321FE;
         }
+
+        .back-button {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .back-button a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #527321FE;
+            padding: 10px 20px;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-button a:hover {
+            background-color: #435D21;
+        }
+
+        .back-button a::before {
+            content: '←';
+            margin-right: 1px;
+        }
+
+        .container {
+            margin-top: 80px;
+            /* Adjust this value to lower the white box */
+        }
     </style>
 </head>
 
 <body>
+    <div class="back-button">
+        <a href="/dashboard"></a>
+    </div>
+
     <div class="container light-style flex-grow-1 container-p-y">
         <h4 class="font-weight-bold py-3 mb-4">
-            Account settings
+            Profile Settings
         </h4>
         <div class="card overflow-hidden">
             <div class="row no-gutters row-bordered row-border-light">
@@ -98,10 +133,10 @@
                         </div>
                     </div>
                 </div>
+                <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+                <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
             </div>
-            <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
-            <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.bundle.min.js"></script>
         </div>
     </div>
 </body>

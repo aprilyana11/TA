@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Personal Air Monitoring</title>
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml" />
+  <link rel="shortcut icon" href="{{ asset('images/waqms.svg')}}" type="images/svg+xml" />
   <link rel="stylesheet" href={{asset("css/style1.css")}} />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -202,7 +202,6 @@
                   <p class="tab-text">Practical and Efficient Solution</p>
                 </li>
               </ul>
-              <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
               </button>
             </div>
           </div>
@@ -213,112 +212,111 @@
         - #Feature
       -->
 
-      <section class="section service" id="Features" style=<img src="{{ asset('images/map.png')}}">
-        <div class="container">
-          <p class="section-subtitle">
-            <img src="{{ asset('images/u.png')}}" width="32" height="7" alt="Wavy line" />
+      <div class="container">
+        <p class="section-subtitle">
+          <img src="{{ asset('images/u.png')}}" width="32" height="7" alt="Wavy line" />
 
-            <span>What We Do</span>
-          </p>
+          <span>What We Do</span>
+        </p>
 
-          <h2 class="h2 section-title">
-            We Work Differently to <strong>keep The Healthy Safe</strong>
-          </h2>
+        <h2 class="h2 section-title">
+          We Work Differently to <strong>keep The Healthy Safe</strong>
+        </h2>
 
-          <ul class="service-list">
-            <li>
-              <div class="service-card">
-                <div class="card-icon">
-                  <ion-icon name="leaf-outline"></ion-icon>
-                </div>
-
-                <h3 class="h3 card-title">
-                  Real-Time Air Quality Monitoring
-                </h3>
-
-                <p class="card-text">
-                  Stay updated with the latest air quality information around
-                  you. Our system provides real-time data, ensuring you are
-                  always aware of the air you are breathing.
-                </p>
-
-                <a href="#" class="btn-link">
-                  <span>Read More</span>
-
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
+        <ul class="service-list">
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="leaf-outline"></ion-icon>
               </div>
-            </li>
 
-            <li>
-              <div class="service-card">
-                <div class="card-icon">
-                  <ion-icon name="earth-outline"></ion-icon>
-                </div>
+              <h3 class="h3 card-title">
+                Real-Time Air Quality Monitoring
+              </h3>
 
-                <h3 class="h3 card-title">Compact and Wearable Design</h3>
+              <p class="card-text">
+                Stay updated with the latest air quality information around
+                you. Our system provides real-time data, ensuring you are
+                always aware of the air you are breathing.
+              </p>
 
-                <p class="card-text">
-                  Experience the convenience of our lightweight and
-                  ergonomically designed device. Wear it comfortably
-                  throughout the day and monitor air quality wherever you go.
-                </p>
+              <a href="#" class="btn-link">
+                <span>Read More</span>
 
-                <a href="#" class="btn-link">
-                  <span>Read More</span>
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
 
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="earth-outline"></ion-icon>
               </div>
-            </li>
 
-            <li>
-              <div class="service-card">
-                <div class="card-icon">
-                  <ion-icon name="flower-outline"></ion-icon>
-                </div>
+              <h3 class="h3 card-title">Compact and Wearable Design</h3>
 
-                <h3 class="h3 card-title">Advanced Sensor Technology</h3>
+              <p class="card-text">
+                Experience the convenience of our lightweight and
+                ergonomically designed device. Wear it comfortably
+                throughout the day and monitor air quality wherever you go.
+              </p>
 
-                <p class="card-text">
-                  Benefit from cutting-edge sensors that detect various
-                  pollutants, including particulate matter (PM2.5 and PM10),
-                  Equivalent carbon dioxide (ECO2), and Total volatile organic
-                  compounds (TVOCs), Temperature, Humidity.
-                </p>
+              <a href="#" class="btn-link">
+                <span>Read More</span>
 
-                <a href="#" class="btn-link">
-                  <span>Read More</span>
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
 
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="flower-outline"></ion-icon>
               </div>
-            </li>
 
-            <li>
-              <div class="service-card">
-                <div class="card-icon">
-                  <ion-icon name="boat-outline"></ion-icon>
-                </div>
+              <h3 class="h3 card-title">Advanced Sensor Technology</h3>
 
-                <h3 class="h3 card-title">Mobile App Integration</h3>
+              <p class="card-text">
+                Benefit from cutting-edge sensors that detect various
+                pollutants, including particulate matter (PM2.5 and PM10),
+                Equivalent carbon dioxide (ECO2), and Total volatile organic
+                compounds (TVOCs), Temperature, Humidity.
+              </p>
 
-                <p class="card-text">
-                  Easily sync the device with our user-friendly mobile app to
-                  access detailed insights, historical data, and personalized
-                  alerts directly on your smartphone.
-                </p>
+              <a href="#" class="btn-link">
+                <span>Read More</span>
 
-                <a href="#" class="btn-link">
-                  <span>Read More</span>
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </a>
+            </div>
+          </li>
 
-                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-                </a>
-
+          <li>
+            <div class="service-card">
+              <div class="card-icon">
+                <ion-icon name="boat-outline"></ion-icon>
               </div>
-            </li>
-          </ul>
-        </div>
+
+              <h3 class="h3 card-title">Mobile App Integration</h3>
+
+              <p class="card-text">
+                Easily sync the device with our user-friendly mobile app to
+                access detailed insights, historical data, and personalized
+                alerts directly on your smartphone.
+              </p>
+
+              <a href="#" class="btn-link">
+                <span>Read More</span>
+
+                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+              </a>
+
+            </div>
+          </li>
+        </ul>
+      </div>
       </section>
       <!-- 
     - custom js link
