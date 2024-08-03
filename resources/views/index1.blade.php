@@ -59,7 +59,7 @@
       <section class="hero" id="home">
         <div class="container">
           <p class="section-subtitle">
-            <img src="{{ asset('images/subtitle-img-white.png')}}" width="32" height="7" alt="Wavy line" />
+            <img src="{{ asset('images/o.png')}}" width="32" height="7" alt="Wavy line" />
             <span>Selamat Datang di WAQMS</span>
           </p>
           <h2 class="h1 hero-title">
@@ -125,7 +125,7 @@
       <section class="section about" id="about">
         <div class="container">
           <div class="about-banner">
-            <h2 class="deco-title">Tentang kami</h2>
+            <h2 class="deco-title">WAQMS</h2>
             <div class="banner-row">
               <div class="banner-col">
                 <img src="{{ asset('images/casing.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
@@ -139,204 +139,197 @@
           </div>
           <div class="about-content">
             <p class="section-subtitle">
-              <img src="{{ asset('images/subtitle')
-                <span>Why ?</span>
+              <img src="{{ asset('images/u.png')}}" width="30" height="7" alt="Wavy line" />
+
+              <span>Why ?</span>
+            </p>
+            <h2 class="h2 section-title">
+              Why choose<strong>Wearable ? </strong>
+            </h2>
+
+            <ul class="tab-nav">
+              <li>
+                <button class="tab-btn active">Our Mission</button>
+              </li>
+
+              <li>
+                <button class="tab-btn">Our Vision</button>
+              </li>
+
+              <li>
+                <button class="tab-btn">Next Plan</button>
+              </li>
+            </ul>
+
+            <div class="tab-content">
+              <p class="section-text">
+                This device is designed for personal daily air quality
+                monitoring, aimed at measuring air quality parameters and
+                evaluating exposure based on IoT.
               </p>
 
-              <h2 class="h2 section-title">
-                Why choose<strong>Wearable ? </strong>
-              </h2>
+              <ul class="tab-list">
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
 
-              <ul class="tab-nav">
-                <li>
-                  <button class="tab-btn active">Our Mission</button>
+                  <p class="tab-text">Charity For Foods</p>
                 </li>
 
-                <li>
-                  <button class="tab-btn">Our Vision</button>
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Air Quality at your Fingertips</p>
+
                 </li>
 
-                <li>
-                  <button class="tab-btn">Next Plan</button>
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Comfort and Mobility</p>
+                </li>
+
+                <li class="tab-item">
+                  <div class="item-icon">
+                    <ion-icon name="checkmark-circle"></ion-icon>
+                  </div>
+
+                  <p class="tab-text">Practical and Efficient Solution</p>
                 </li>
               </ul>
-
-              <div class="tab-content">
-                <p class="section-text">
-                  This device is designed for personal daily air quality
-                  monitoring, aimed at measuring air quality parameters and
-                  evaluating exposure based on IoT.
-                </p>
-
-                <ul class="tab-list">
-                  <li class="tab-item">
-                    <div class="item-icon">
-                      <ion-icon name="checkmark-circle"></ion-icon>
-                    </div>
-
-                    <p class="tab-text">Charity For Foods</p>
-                  </li>
-
-                  <li class="tab-item">
-                    <div class="item-icon">
-                      <ion-icon name="checkmark-circle"></ion-icon>
-                    </div>
-
-                    <p class="tab-text">Air Quality at your Fingertips</p>
-
-                  </li>
-
-                  <li class="tab-item">
-                    <div class="item-icon">
-                      <ion-icon name="checkmark-circle"></ion-icon>
-                    </div>
-
-                    <p class="tab-text">Comfort and Mobility</p>
-                  </li>
-
-                  <li class="tab-item">
-                    <div class="item-icon">
-                      <ion-icon name="checkmark-circle"></ion-icon>
-                    </div>
-
-                    <p class="tab-text">Practical and Efficient Solution</p>
-                  </li>
-                </ul>
-                  <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
-                </button>
-              </div>
+              <ion-icon name="heart-outline" aria-hidden="true"></ion-icon>
+              </button>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- 
+      <!-- 
         - #Feature
       -->
 
-        <section
-          class="section service"
-          id="Features"
+      <section class="section service" id="Features" style=<img src="{{ asset('images/map.png')}}">
+        <div class="container">
+          <p class="section-subtitle">
+            <img src="{{ asset('images/u.png')}}" width="32" height="7" alt="Wavy line" />
 
-        
-          <div class="container">
-            <p class="section-subtitle">
-              <img
-                src="./assets/imagess/subtitle-img-green.png"
-                width="32"
-                height="7"
-                alt="Wavy line"
-              />
+            <span>What We Do</span>
+          </p>
 
-              <span>What We Do</span>
-            </p>
+          <h2 class="h2 section-title">
+            We Work Differently to <strong>keep The Healthy Safe</strong>
+          </h2>
 
-            <h2 class="h2 section-title">
-              We Work Differently to <strong>keep The Healthy Safe</strong>
-            </h2>
-
-            <ul class="service-list">
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <ion-icon name="leaf-outline"></ion-icon>
-                  </div>
-
-                  <h3 class="h3 card-title">
-                    Real-Time Air Quality Monitoring
-                  </h3>
-
-                  <p class="card-text">
-                    Stay updated with the latest air quality information around
-                    you. Our system provides real-time data, ensuring you are
-                    always aware of the air you are breathing.
-                  </p>
-
-                  <a href="#" class="btn-link">
-                    <span>Read More</span>
-
-                    <ion-icon
-                      name="arrow-forward"
-                      aria-hidden="true"
-                    ></ion-icon>
-                  </a>
+          <ul class="service-list">
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="leaf-outline"></ion-icon>
                 </div>
-              </li>
 
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <ion-icon name="earth-outline"></ion-icon>
-                  </div>
+                <h3 class="h3 card-title">
+                  Real-Time Air Quality Monitoring
+                </h3>
 
-                  <h3 class="h3 card-title">Compact and Wearable Design</h3>
+                <p class="card-text">
+                  Stay updated with the latest air quality information around
+                  you. Our system provides real-time data, ensuring you are
+                  always aware of the air you are breathing.
+                </p>
 
-                  <p class="card-text">
-                    Experience the convenience of our lightweight and
-                    ergonomically designed device. Wear it comfortably
-                    throughout the day and monitor air quality wherever you go.
-                  </p>
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
 
-                  <a href="#" class="btn-link">
-                    <span>Read More</span>
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
 
-                    <ion-icon
-                      name="arrow-forward"
-                      aria-hidden="true"
-                    ></ion-icon>
-                  </a>
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="earth-outline"></ion-icon>
                 </div>
-              </li>
 
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <ion-icon name="flower-outline"></ion-icon>
-                  </div>
+                <h3 class="h3 card-title">Compact and Wearable Design</h3>
 
-                  <h3 class="h3 card-title">Advanced Sensor Technology</h3>
+                <p class="card-text">
+                  Experience the convenience of our lightweight and
+                  ergonomically designed device. Wear it comfortably
+                  throughout the day and monitor air quality wherever you go.
+                </p>
 
-                  <p class="card-text">
-                    Benefit from cutting-edge sensors that detect various
-                    pollutants, including particulate matter (PM2.5 and PM10),
-                    Equivalent carbon dioxide (ECO2), and Total volatile organic
-                    compounds (TVOCs), Temperature, Humidity.
-                  </p>
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
 
-                  <a href="#" class="btn-link">
-                    <span>Read More</span>
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
 
-                    <ion-icon
-                      name="arrow-forward"
-                      aria-hidden="true"
-                    ></ion-icon>
-                  </a>
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="flower-outline"></ion-icon>
                 </div>
-              </li>
 
-              <li>
-                <div class="service-card">
-                  <div class="card-icon">
-                    <ion-icon name="boat-outline"></ion-icon>
-                  </div>
+                <h3 class="h3 card-title">Advanced Sensor Technology</h3>
 
-                  <h3 class="h3 card-title">Mobile App Integration</h3>
+                <p class="card-text">
+                  Benefit from cutting-edge sensors that detect various
+                  pollutants, including particulate matter (PM2.5 and PM10),
+                  Equivalent carbon dioxide (ECO2), and Total volatile organic
+                  compounds (TVOCs), Temperature, Humidity.
+                </p>
 
-                  <p class="card-text">
-                    Easily sync the device with our user-friendly mobile app to
-                    access detailed insights, historical data, and personalized
-                    alerts directly on your smartphone.
-                  </p>
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
 
-                  <a href="#" class="btn-link">
-                    <span>Read More</span>
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+              </div>
+            </li>
 
-                    <ion-icon
-                      name="arrow-forward"
-                      aria-hidden="true"
-                    ></ion-icon>
-                  </a>
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="boat-outline"></ion-icon>
                 </div>
-              </li>
-            </ul>
-          </div>
-        </section>
+
+                <h3 class="h3 card-title">Mobile App Integration</h3>
+
+                <p class="card-text">
+                  Easily sync the device with our user-friendly mobile app to
+                  access detailed insights, historical data, and personalized
+                  alerts directly on your smartphone.
+                </p>
+
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+
+              </div>
+            </li>
+          </ul>
+        </div>
+      </section>
+      <!-- 
+    - custom js link
+  -->
+      <script src="{{ asset('js/script2.js') }}"></script>
+
+      <!-- 
+- ionicon link
+-->
+      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
