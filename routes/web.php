@@ -56,6 +56,12 @@ Route::get('/login', [LoginController::class, 'login'])->name('login');
 Route::get('/grafikwaqms', function () {
     return view('grafik');
 });
+Route::get('/grafikwaqms_1H', function () {
+    return view('grafik_hourly');
+});
+Route::get('/grafikwaqms_1D', function () {
+    return view('grafik_daily');
+});
 Route::get('/datamaps', function () {
     return view('tabeldata');
 });

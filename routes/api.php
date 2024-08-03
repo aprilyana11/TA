@@ -34,6 +34,8 @@ Route::post('/send', [SendDataController::class, 'send']);
 Route::get('/History/{type}', [DataController::class, 'History']);
 
 Route::get('/waqms', [GrafikController::class, 'index']);
+Route::get('/waqms/1H', [GrafikController::class, 'per_jam']);
+Route::get('/waqms/1D', [GrafikController::class, 'per_day']);
 Route::post('/register', [RegistrasiController::class, 'register'])->name('register');
 
 

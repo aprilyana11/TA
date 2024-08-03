@@ -156,26 +156,21 @@
       margin-right: 10px;
     }
   </style>
-
 </head>
 
 <body>
-
-  <body>
-    <div class="back-button">
-      <a href="/dashboard"></a>
+  <div class="back-button">
+    <a href="/dashboard"></a>
+  </div>
+  <div class="right-buttons">
+    <div class="second-button">
+      <a href="/grafikwaqms">Grafik Valid</a>
     </div>
-    <div class="right-buttons">
-      <div class="second-button">
-        <a href="/grafikwaqms_1H">Grafik Hourly</a>
-      </div>
-      <div class="third-button">
-        <a href="/grafikwaqms_1D">Grafik Daily</a>
-      </div>
+    <div class="third-button">
+      <a href="/grafikwaqms_1H">Grafik Hourly</a>
     </div>
+  </div>
 
-
-  </body>
 
   <div class="chart-wrapper">
     <div class="chart-container" id="pm25-chart"></div>
@@ -201,7 +196,7 @@
 
   <script>
     // Fetch data from the API
-    axios.get('api/waqms')
+    axios.get('api/waqms/1D')
       .then(response => {
         const data = response.data;
 
@@ -235,7 +230,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -269,7 +264,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -303,7 +298,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -337,7 +332,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -371,7 +366,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -405,7 +400,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {
@@ -439,7 +434,7 @@
             type: 'datetime',
             labels: {
               datetimeUTC: false,
-              format: 'HH:mm', // Format jam pada label sumbu X
+              format: 'MM-dd', // Format jam pada label sumbu X
             }
           },
           yaxis: {

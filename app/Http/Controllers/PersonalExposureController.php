@@ -32,14 +32,36 @@ class PersonalExposureController extends Controller
         $intensity = 20; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
         $activityFactor = 1; // nilai faktor aktivitas
         $residenceFactor = 1; // nilai faktor residensi
-        $pm25 = $data['pm25'];
-        // Hitung dosis paparan
-        $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
+        if ($data === null) {
+            $pm25 = null;
+            $data['created_at'] = '-';
+            $data['pm25'] = '-';
+            $data['pm10'] = '-';
+            $data['temperature'] = '-';
+            $data['humidity'] = '-';
+            $data['pressure'] = '-';
+            $data['tvoc'] = '-';
+            $data['eco2'] = '-';
+            $dose = '-';
+            // Data ditampilkan di view
+            $exposure_level = '-'; // harus diubah sesuai dengan logika
+            $exposureValue = '-';
+            $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
-        // Data ditampilkan di view
-        $exposure_level = 'Tidak sehat'; // harus diubah sesuai dengan logika
-        $exposureValue = round($dose); // Pembulatan dosis
-        $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
+        } else {
+            $pm25 = $data['pm25'];
+
+            $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
+
+            // Data ditampilkan di view
+            $exposure_level = 'Tidak sehat'; // harus diubah sesuai dengan logika
+            $exposureValue = round($dose); // Pembulatan dosis
+            $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
+        }
+
+        // Hitung dosis paparan
+
+
 
         return view('index3', [
             'created_at' => $data['created_at'],
