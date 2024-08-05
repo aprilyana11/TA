@@ -74,6 +74,10 @@ Route::get('/grafikwaqms_1D', function () {
 Route::get('/kodulargrafikwaqms_1D', function () {
     return view('kodulargrafik_daily');
 });
+Route::get('/kodular_table/{type}', function ($type) {
+    return view('kodular_history', ['type' => $type]);
+});
+
 Route::get('/datamaps', function () {
     return view('tabeldata');
 });
