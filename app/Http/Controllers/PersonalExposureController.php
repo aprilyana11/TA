@@ -7,13 +7,15 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\PersonalExposure;
 use App\Models\User;
 use App\Models\WAQMS_Valid;
-// use Carbon\Carbon;
+use Carbon\Carbon;
 
 
 class PersonalExposureController extends Controller
 {
     public function showPersonalExposure()
     {
+        $yesterday1 = Carbon::now()->subDay()->startOfDay();
+        $yesterday2 = Carbon::now()->subDay()->endOfDay();
         $data = WAQMS_Valid::latest('created_at')->first();
 
         // Ambil data dari database
@@ -29,7 +31,7 @@ class PersonalExposureController extends Controller
 
         // Jika gagal mendapatkan nilai dari Thingspeak, gunakan nilai default
 
-        $intensity = 20; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
+        $intensity = 0; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
         $activityFactor = 1; // nilai faktor aktivitas
         $residenceFactor = 1; // nilai faktor residensi
         if ($data === null) {
@@ -49,13 +51,36 @@ class PersonalExposureController extends Controller
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
         } else {
-            $pm25 = $data['pm25'];
+            $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
 
-            $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
+            // Cek apakah jumlah data setidaknya 480
+            if ($pm25Dose->count() >= 480) {
+                // Hitung rata-rata dari data 'pm25'
+                $pm25Average = $pm25Dose->average();
+                $dose    = $pm25Average * $intensity * $activityFactor * $residenceFactor / $weight;
+            } else {
+                // Jika kurang dari 480 data, set $pm25Average menjadi null
+                $pm25Average = null;
+                $dose = null;
+            }
+
+
+            $exposure_level = null;
+            // Tentukan level paparan berdasarkan exposure_value
+            if ($dose === null) {
+                $exposure_level = null;
+            } elseif ($dose <= 0.01) {
+                $exposure_level = 'rendah';
+            } elseif ($dose >= 0.01 && $dose < 0.05) {
+                $exposure_level = 'Sedang';
+            } elseif ($dose >= 0.05 && $dose < 0.10) {
+                $exposure_level = 'Tinggi';
+            } elseif ($dose >= 0.10) {
+                $exposure_level = 'Sangat Tinggi';
+            }
 
             // Data ditampilkan di view
-            $exposure_level = 'Tidak sehat'; // harus diubah sesuai dengan logika
-            $exposureValue = round($dose); // Pembulatan dosis
+            $exposureValue = $dose ? $dose : null; // Pembulatan dosis
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
         }
 
@@ -77,31 +102,5 @@ class PersonalExposureController extends Controller
             'exposureValue' => $exposureValue,
             'recommendationTime' => $recommendationTime
         ]);
-    }
-
-    private function getPM25Concentration()
-    {
-        // Channel ID dan API Key dari Thingspeak
-        // $channelId = 'YOUR_CHANNEL_ID';
-        // $apiKey = 'YOUR_API_KEY';
-
-        // URL untuk mengambil data dari Thingspeak
-        // $url = "https://api.thingspeak.com/channels/$channelId/fields/1/last.json?api_key=$apiKey";
-
-        // Mengambil data dari Thingspeak menggunakan file_get_contents()
-        // $response = file_get_contents($url);
-
-        // Menangani response JSON
-        // $data = json_decode($response, true);
-
-        // Memeriksa apakah data berhasil diambil
-        // if (isset($data['field1'])) {
-        // Mengambil nilai konsentrasi PM2.5 dari response
-        // $concentration = $data['field1'];
-        // return $concentration;
-        // } else {
-        // Gagal mengambil nilai konsentrasi PM2.5 dari Thingspeak
-        // return null;
-        // }
     }
 }
