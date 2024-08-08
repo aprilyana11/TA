@@ -65,12 +65,13 @@ class PersonalExposureController extends Controller
             }
 
 
-            $exposure_level = null;
+            $exposure_level = 'Tidak Ada';
+
             // Tentukan level paparan berdasarkan exposure_value
             if ($dose === null) {
                 $exposure_level = 'Tidak Ada';
-            } elseif ($dose <= 0.01) {
-                $exposure_level = 'rendah';
+            } elseif ($dose < 0.01) {
+                $exposure_level = 'Rendah';
             } elseif ($dose >= 0.01 && $dose < 0.05) {
                 $exposure_level = 'Sedang';
             } elseif ($dose >= 0.05 && $dose < 0.10) {
@@ -80,7 +81,7 @@ class PersonalExposureController extends Controller
             }
 
             // Data ditampilkan di view
-            $exposureValue = $dose ? $dose : null; // Pembulatan dosis
+            $exposureValue = $dose ? $dose : null;
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
         }
 

@@ -93,21 +93,23 @@ class ProfileKodularController extends Controller
         }
 
 
-        $exposure_level = null;
+        $exposure_level = 'Tidak Ada';
 
+        // Tentukan level paparan berdasarkan exposure_value
         if ($dose === null) {
             $exposure_level = 'Tidak Ada';
-        } elseif ($dose <= 0.01) {
-            $exposure_level = 'Baik';
+        } elseif ($dose < 0.01) {
+            $exposure_level = 'Rendah';
         } elseif ($dose >= 0.01 && $dose < 0.05) {
-            $exposure_level = 'Sehat';
+            $exposure_level = 'Sedang';
         } elseif ($dose >= 0.05 && $dose < 0.10) {
-            $exposure_level = 'Tidak Sehat';
+            $exposure_level = 'Tinggi';
         } elseif ($dose >= 0.10) {
-            $exposure_level = 'Berbahaya';
+            $exposure_level = 'Sangat Tinggi';
         }
         // Data ditampilkan di view
-        $exposureValue = round($dose); // Pembulatan dosis
+        $exposureValue = $dose ? $dose : null;
+
         $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
         return response()->json([
