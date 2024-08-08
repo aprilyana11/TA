@@ -68,7 +68,7 @@ class PersonalExposureController extends Controller
             $exposure_level = null;
             // Tentukan level paparan berdasarkan exposure_value
             if ($dose === null) {
-                $exposure_level = null;
+                $exposure_level = 'Tidak Ada';
             } elseif ($dose <= 0.01) {
                 $exposure_level = 'rendah';
             } elseif ($dose >= 0.01 && $dose < 0.05) {

@@ -8,8 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\WAQMS_Valid;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
-
 
 class ProfileKodularController extends Controller
 {
@@ -67,21 +67,46 @@ class ProfileKodularController extends Controller
     }
     public function PersonalExposure(Request $request)
     {
+        $yesterday1 = Carbon::now()->subDay()->startOfDay();
+        $yesterday2 = Carbon::now()->subDay()->endOfDay();
         $user = User::where('username', $request->input('username'))->first();
         $data = WAQMS_Valid::latest('created_at')->first();
 
         // Ambil data dari database
         $weight = $user->weight; // Berat badan dari user
 
-        $intensity = 20; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
+        $intensity = 0; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
         $activityFactor = 1; // nilai faktor aktivitas
         $residenceFactor = 1; // nilai faktor residensi
-        $pm25 = $data['pm25'];
         // Hitung dosis paparan
-        $dose = $pm25 * $intensity * $activityFactor * $residenceFactor / $weight;
+        $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
 
+        // Cek apakah jumlah data setidaknya 480
+        if ($pm25Dose->count() >= 480) {
+            // Hitung rata-rata dari data 'pm25'
+            $pm25Average = $pm25Dose->average();
+            $dose    = $pm25Average * $intensity * $activityFactor * $residenceFactor / $weight;
+        } else {
+            // Jika kurang dari 480 data, set $pm25Average menjadi null
+            $pm25Average = null;
+            $dose = null;
+        }
+
+
+        $exposure_level = null;
+
+        if ($dose === null) {
+            $exposure_level = 'Tidak Ada';
+        } elseif ($dose <= 0.01) {
+            $exposure_level = 'Baik';
+        } elseif ($dose >= 0.01 && $dose < 0.05) {
+            $exposure_level = 'Sehat';
+        } elseif ($dose >= 0.05 && $dose < 0.10) {
+            $exposure_level = 'Tidak Sehat';
+        } elseif ($dose >= 0.10) {
+            $exposure_level = 'Berbahaya';
+        }
         // Data ditampilkan di view
-        $exposure_level = 'Tidak sehat'; // harus diubah sesuai dengan logika
         $exposureValue = round($dose); // Pembulatan dosis
         $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
