@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfileKodularController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\SendDataController;
+use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\TrackingController;
 
 use Illuminate\Http\Request;
@@ -32,6 +33,7 @@ Route::get('/data/kodular', [ParameterController::class, 'kodular']);
 
 Route::post('/send', [SendDataController::class, 'send']);
 Route::get('/History/{type}', [DataController::class, 'History']);
+Route::get('/Statistik/{parameter}', [StatistikController::class, 'index']);
 
 Route::get('/waqms', [GrafikController::class, 'index']);
 Route::get('/waqms/1H', [GrafikController::class, 'per_jam']);
