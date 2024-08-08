@@ -12,8 +12,8 @@ class StatistikController extends Controller
     public function index($parameter, Request $request)
     {
         // Set the start and stop time
-        $time_start = $request->time_start ? Carbon::parse($request->time_start) : Carbon::now();
-        $time_stop = $request->time_stop ? Carbon::parse($request->time_stop) : Carbon::now()->subDay();
+        $time_start = $request->time_start ? Carbon::parse($request->time_start)->second(0) : Carbon::now()->second(0);
+        $time_stop = $request->time_stop ? Carbon::parse($request->time_stop)->second(0) : Carbon::now()->subDay()->second(0);
 
         // Define the valid parameters
         $params = ['pm25', 'pm10', 'temperature', 'humidity', 'tvoc', 'eco2', 'pressure'];
@@ -33,7 +33,7 @@ class StatistikController extends Controller
 
             // Calculate the time difference in minutes
             $time_difference = $time_start->diffInMinutes($time_stop);
-
+            $time_difference = $time_difference + 1;
             // Prepare the result array
             $result = [
                 'Waktu Mulai' => $time_start->toDateTimeString(),

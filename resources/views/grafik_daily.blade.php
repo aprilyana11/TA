@@ -60,7 +60,7 @@
 
     .back-button a::before {
       content: '←';
-      margin-right: 10px;
+      margin-right: 1px;
     }
 
     /* Container for the right-aligned buttons */
@@ -113,7 +113,7 @@
 
     .second-button a::before {
       content: '→';
-      margin-right: 10px;
+      margin-right: 1px;
     }
 
     /* Styles for third-button */
@@ -153,7 +153,7 @@
 
     .third-button a::before {
       content: '→';
-      margin-right: 10px;
+      margin-right: 1px;
     }
   </style>
 </head>
@@ -164,10 +164,10 @@
   </div>
   <div class="right-buttons">
     <div class="second-button">
-      <a href="/grafikwaqms">Grafik Valid</a>
+      <a href="/grafikwaqms">Valid</a>
     </div>
     <div class="third-button">
-      <a href="/grafikwaqms_1H">Grafik Hourly</a>
+      <a href="/grafikwaqms_1H">Hourly</a>
     </div>
   </div>
 
