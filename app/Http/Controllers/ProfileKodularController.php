@@ -55,7 +55,7 @@ class ProfileKodularController extends Controller
 
         if ($user && Hash::check($credentials['password'], $user->password)) {
             // Update the user's weight
-            $user->password = Hash::make($request->new_password);
+            $user->password = Hash::make($request->newPassword);
             /** @var \App\Models\User $user **/
             $user->save();
 
