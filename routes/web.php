@@ -7,10 +7,10 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\DownloadController;
 use App\Http\Controllers\GrafikController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\TrackingController;
-
 
 
 /*
@@ -89,3 +89,5 @@ Route::get('/personal-exposure', [PersonalExposureController::class, 'showPerson
 Route::get('/kodularmaps', function () {
     return view('mapskodular');
 });
+
+Route::get('/download', [DownloadController::class, 'download']);
