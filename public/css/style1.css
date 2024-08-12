@@ -1500,4 +1500,31 @@ body {
     .nav-link:last-child {
         margin-right: 0; /* Remove the margin for the last item */
     }
+    .qr-code-container {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        display: block;
+        text-align: center;
+    }
+
+    .qr-code-img {
+        width: 150px;
+        height: auto;
+        border-radius: 10px;
+    }
+
+    .qr-toggle-btn {
+        margin-top: 10px;
+        padding: 5px 10px;
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .qr-toggle-btn:hover {
+        background-color: #45a049;
+    }
 }

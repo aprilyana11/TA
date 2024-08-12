@@ -31,16 +31,21 @@
         </button>
         <a href="#" class="logo">WAQMS</a>
         <ul class="navbar-list">
-          <li>
-            <a href="#home" class="navbar-link" data-nav-link>
-              <span>Home</span>
-              <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
-            </a>
+          <a href="#home" class="navbar-link" data-nav-link>
+            <span>Home</span>
+            <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+          </a>
           </li>
           <li>
             <a href="#waqms" class="navbar-link" data-nav-link>
               <span>WAQMS</span>
               <ion-icon name="chevron-forward-outline" aria-hidden="true"></ion-icon>
+            </a>
+          </li>
+          <li>
+            <a href="{{ url('/download') }}" class="navbar-link" data-nav-link>
+              <span>Download</span>
+              <ion-icon name="cloud-download-outline" aria-hidden="true"></ion-icon>
             </a>
           </li>
         </ul>
@@ -207,7 +212,9 @@
           </div>
         </div>
       </section>
-
+      <div id="qr-code-container" class="qr-code-container">
+        <img src="{{ asset('images/qr.png') }}" alt="QR Code" class="qr-code-img" />
+      </div>
       <!-- 
         - #Feature
       -->
