@@ -212,9 +212,6 @@
           </div>
         </div>
       </section>
-      <div id="qr-code-container" class="qr-code-container">
-        <img src="{{ asset('images/qr.png') }}" alt="QR Code" class="qr-code-img" />
-      </div>
       <!-- 
         - #Feature
       -->
@@ -325,10 +322,38 @@
         </ul>
       </div>
       </section>
-      <!-- 
-    - custom js link
-  -->
+      <div class="qr-container">
+        <button id="qr-toggle" class="qr-toggle" aria-label="Toggle QR Code">
+          <ion-icon name="close-outline"></ion-icon>
+        </button>
+        <img
+          src="{{ asset('images/qr.png') }}"
+          class="qr-image"
+          alt="QR Code">
+      </div>
+
       <script src="{{ asset('js/script2.js') }}"></script>
+
+      <script>
+        function updateImageSource() {
+          const image = document.getElementById('qr-image');
+          const width = window.innerWidth;
+
+          if (width <= 599) {
+            image.src = "{{ asset('images/qr.png') }}";
+          } else if (width <= 999) {
+            image.src = "{{ asset('images/qr.png') }}";
+          } else {
+            image.src = "{{ asset('images/qr.png') }}";
+          }
+        }
+
+        // Initial load
+        updateImageSource();
+
+        // Update image source on window resize
+        window.addEventListener('resize', updateImageSource);
+      </script>
 
       <!-- 
 - ionicon link

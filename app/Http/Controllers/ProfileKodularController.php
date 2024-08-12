@@ -74,15 +74,33 @@ class ProfileKodularController extends Controller
 
         // Ambil data dari database
         $weight = $user->weight; // Berat badan dari user
+        if ($user->age <= 1) {
+            $intensity = 4.5; // Laju inhalasi untuk bayi (0-1 tahun)
+            $activityFactor = 1.2; // Faktor aktivitas untuk bayi (0-1 tahun)
+            $residenceFactor = 0.9; // Faktor residensi untuk bayi (0-1 tahun)
+        } elseif ($user->age <= 5) {
+            $intensity = 9.0; // Laju inhalasi untuk anak-anak (1-5 tahun)
+            $activityFactor = 1.3; // Faktor aktivitas untuk anak-anak (1-5 tahun)
+            $residenceFactor = 0.85; // Faktor residensi untuk anak-anak (1-5 tahun)
+        } elseif ($user->age <= 12) {
+            $intensity = 13.5; // Laju inhalasi untuk anak-anak (6-12 tahun)
+            $activityFactor = 1.1; // Faktor aktivitas untuk anak-anak (6-12 tahun)
+            $residenceFactor = 0.75; // Faktor residensi untuk anak-anak (6-12 tahun)
+        } elseif ($user->age >= 65) {
+            $intensity = 13.0; // Laju inhalasi untuk lansia (65+ tahun)
+            $activityFactor = 0.9; // Faktor aktivitas untuk lansia (65+ tahun)
+            $residenceFactor = 0.85; // Faktor residensi untuk lansia (65+ tahun)
+        } else {
+            $intensity = 18.0; // Laju inhalasi default untuk orang dewasa (18-64 tahun)
+            $activityFactor = 1.0; // Faktor aktivitas default untuk orang dewasa (18-64 tahun)
+            $residenceFactor = 0.7; // Faktor residensi default untuk orang dewasa (18-64 tahun)
+        }
 
-        $intensity = 0; // nilai inhalasi, disesuaikan dengan data (cari relasi antara bb dengan IR)
-        $activityFactor = 1; // nilai faktor aktivitas
-        $residenceFactor = 1; // nilai faktor residensi
         // Hitung dosis paparan
         $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
 
         // Cek apakah jumlah data setidaknya 480
-        if ($pm25Dose->count() >= 480) {
+        if ($pm25Dose->count() >= 1080) { //1 hari yang lalu, 24 jam * 60 data / 1 jamnya 75% 
             // Hitung rata-rata dari data 'pm25'
             $pm25Average = $pm25Dose->average();
             $dose    = $pm25Average * $intensity * $activityFactor * $residenceFactor / $weight;

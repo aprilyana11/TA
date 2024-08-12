@@ -1,4 +1,21 @@
 "use strict";
+document.addEventListener("DOMContentLoaded", function () {
+    const qrContainer = document.getElementById("qr-container");
+    const qrToggle = document.getElementById("qr-toggle");
+
+    qrToggle.addEventListener("click", function () {
+        if (
+            qrContainer.style.display === "none" ||
+            qrContainer.style.display === ""
+        ) {
+            qrContainer.style.display = "flex";
+            qrToggle.innerHTML = '<ion-icon name="close-outline"></ion-icon>';
+        } else {
+            qrContainer.style.display = "none";
+            qrToggle.innerHTML = '<ion-icon name="add-outline"></ion-icon>';
+        }
+    });
+});
 
 /**
  * navbar toggle
