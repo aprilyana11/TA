@@ -9,8 +9,8 @@ class DownloadController extends Controller
 {
     public function download()
     {
-        $filePath = 'public/WAQMS_AirGradient.apk';
-        $fileName = 'WAQMS_AirGradient.apk';
+        $filePath = 'public/APLIKASIAIRGRADIEN.apk';
+        $fileName = 'APLIKASIAIRGRADIEN.apk';
 
         if (Storage::exists($filePath)) {
             return Storage::download($filePath, $fileName);
