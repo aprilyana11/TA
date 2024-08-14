@@ -179,7 +179,7 @@
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
 
-                  <p class="tab-text">Charity For Foods</p>
+                  <p class="tab-text">Personal Exposure Tracking</p>
                 </li>
 
                 <li class="tab-item">
@@ -187,7 +187,7 @@
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
 
-                  <p class="tab-text">Air Quality at your Fingertips</p>
+                  <p class="tab-text">Historical Data Access</p>
 
                 </li>
 
@@ -196,7 +196,7 @@
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
 
-                  <p class="tab-text">Comfort and Mobility</p>
+                  <p class="tab-text">Enhanced Mobility</p>
                 </li>
 
                 <li class="tab-item">
@@ -204,7 +204,7 @@
                     <ion-icon name="checkmark-circle"></ion-icon>
                   </div>
 
-                  <p class="tab-text">Practical and Efficient Solution</p>
+                  <p class="tab-text">Health Protection</p>
                 </li>
               </ul>
               </button>

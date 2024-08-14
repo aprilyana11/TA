@@ -204,6 +204,7 @@
                 <li class="personal-exposure">
                     <i class="bx bxs-face-mask"></i>
                     <span class="text">
+                        <p>Indeks Paparan Personal</p>
                         <p class="level">{{ $exposure_level }}</p>
                         <p class="value">{{ $exposureValue }}</p>
                         <p class="recommendation">{{ $recommendationTime }}</p>
