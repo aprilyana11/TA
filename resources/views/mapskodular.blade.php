@@ -62,13 +62,29 @@
     function updateMap(locations) {
       if (locations.length === 0) return;
 
+      // Initial marker (first location)
       var initialMarker = L.marker([locations[0].latitude, locations[0].longitude], {
         icon: redIcon
-      }).addTo(map).bindTooltip(`Latitude: ${locations[0].latitude}, Longitude: ${locations[0].longitude}, Date: ${new Date(locations[0].created_at).toLocaleDateString()}, Time: ${new Date(locations[0].created_at).toLocaleTimeString()}`);
+      }).addTo(map).bindTooltip(`
+    PM2.5: ${locations[0].pm25} µg/m³<br>
+    PM10: ${locations[0].pm10} µg/m³<br>
+    Temperature: ${locations[0].temperature} °C<br>
+    Humidity: ${locations[0].humidity} %<br>
+    Date: ${new Date(locations[0].created_at).toLocaleDateString()}<br>
+    Time: ${new Date(locations[0].created_at).toLocaleTimeString()}
+  `);
 
+      // Updated marker (last location)
       var updatedMarker = L.marker([locations[locations.length - 1].latitude, locations[locations.length - 1].longitude], {
         icon: blueIcon
-      }).addTo(map).bindTooltip(`Latitude: ${locations[locations.length - 1].latitude}, Longitude: ${locations[locations.length - 1].longitude}, Date: ${new Date(locations[locations.length - 1].created_at).toLocaleDateString()}, Time: ${new Date(locations[locations.length - 1].created_at).toLocaleTimeString()}`);
+      }).addTo(map).bindTooltip(`
+    PM2.5: ${locations[locations.length - 1].pm25} µg/m³<br>
+    PM10: ${locations[locations.length - 1].pm10} µg/m³<br>
+    Temperature: ${locations[locations.length - 1].temperature} °C<br>
+    Humidity: ${locations[locations.length - 1].humidity} %<br>
+    Date: ${new Date(locations[locations.length - 1].created_at).toLocaleDateString()}<br>
+    Time: ${new Date(locations[locations.length - 1].created_at).toLocaleTimeString()}
+  `);
 
       var polyline = L.polyline(locations.map(function(location) {
         return [location.latitude, location.longitude];
@@ -76,12 +92,19 @@
         color: "blue"
       }).addTo(map);
 
+      // Add markers for each location
       locations.forEach(function(location) {
         L.marker([location.latitude, location.longitude], {
           icon: blueIcon
-        }).addTo(map).bindTooltip(`Latitude: ${location.latitude}, Longitude: ${location.longitude}, Date: ${new Date(location.created_at).toLocaleDateString()}, Time: ${new Date(location.created_at).toLocaleTimeString()}`);
+        }).addTo(map).bindTooltip(`
+      PM2.5: ${location.pm25} µg/m³<br>
+      PM10: ${location.pm10} µg/m³<br>
+      Temperature: ${location.temperature} °C<br>
+      Humidity: ${location.humidity} %<br>
+      Date: ${new Date(location.created_at).toLocaleDateString()}<br>
+      Time: ${new Date(location.created_at).toLocaleTimeString()}
+    `);
       });
-
       document.getElementById("time_date").innerHTML = new Date(locations[locations.length - 1].created_at).toLocaleDateString();
       document.getElementById("time_time").innerHTML = new Date(locations[locations.length - 1].created_at).toLocaleTimeString();
       document.getElementById("latitude").innerHTML = locations[locations.length - 1].latitude;
