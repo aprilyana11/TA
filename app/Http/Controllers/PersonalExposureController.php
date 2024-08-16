@@ -73,14 +73,14 @@ class PersonalExposureController extends Controller
         } else {
             $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
 
-            // Cek apakah jumlah data setidaknya 1080
-            if ($pm25Dose->count() >= 1080) { //1 hari yang lalu, 24 jam * 60 data / 1 jamnya 75% 
+            // Cek apakah jumlah data setidaknya 360
+            if ($pm25Dose->count() >= 360) { // 8jamjam * 60 data / 1 jamnya 75% 
                 // Hitung rata-rata dari data 'pm25'
                 $pm25Average = $pm25Dose->average();
                 $dose = ($pm25Average * $intensity * $activityFactor * $residenceFactor) / $weight;
                 $RQ = $dose / 15; //15 RFD acuan 15 ug/m3 WHO 2021 per hari
             } else {
-                // Jika kurang dari 480 data, set $pm25Average menjadi null
+                // Jika kurang dari 360 data, set $pm25Average menjadi null
                 $pm25Average = null;
                 $dose = null;
                 $RQ = null;
