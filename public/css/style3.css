@@ -35,12 +35,6 @@ html {
     overflow-x: hidden;
 }
 
-body.dark {
-    --light: #0c0c1e;
-    --grey: #060714;
-    --dark: #fbfbfb;
-}
-
 body {
     background: var(--grey);
     overflow-x: hidden;
@@ -546,13 +540,13 @@ body {
     }
 
     #content main .table-data .head {
-        min-width: 420px;
+        min-width: 320px;
     }
     #content main .table-data .order table {
-        min-width: 420px;
+        min-width: 320px;
     }
     #content main .table-data .todo .todo-list {
-        min-width: 420px;
+        min-width: 320px;
     }
 }
 body {

@@ -13,52 +13,56 @@ class SendDataController extends Controller
 {
     public function send(Request $request)
     {
-        $data = $request->all();
-
         // Create entry in WAQMS_Raw
-        WAQMS_Raw::create($data);
+        WAQMS_Raw::create($request->all());
 
         // Nullify values outside specified ranges
-        $data = $this->nullifyOutOfRangeValues($data);
+        $data = $request->all();
+        Log::channel('validation')->info("Mendeteksi Out Of Range pada timestamp :" . $data['created_at']);
+        if (isset($data['tvoc']) && ($data['tvoc'] < 0 || $data['tvoc'] > 60000)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range TVOC :" . $data['tvoc']);
+            $data['tvoc'] = null;
+        }
+        if (isset($data['eco2']) && ($data['eco2'] < 400 || $data['eco2'] > 60000)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range eco2 :" . $data['eco2']);
+            $data['eco2'] = null;
+        }
+        if (isset($data['pm25']) && ($data['pm25'] < 0 || $data['pm25'] > 1000)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range pm25 :" . $data['pm25']);
+            $data['pm25'] = null;
+        }
+        if (isset($data['humidity']) && $data['humidity'] >= 80 && isset($data['pm25'])) {
+            Log::channel('validation')->info("Terdeteksi Humidity diatas 80% dengan nilai PM25 :" . $data['pm25']);
+            $data['pm25'] = $data['pm25'] * 0.67;
+        }
+        if (isset($data['pm10']) && ($data['pm10'] < 0 || $data['pm10'] > 1000)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range pm10 :" . $data['pm10']);
+            $data['pm10'] = null;
+        }
+        if (isset($data['temperature']) && ($data['temperature'] < -40 || $data['temperature'] > 85)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range temperature :" . $data['temperature']);
+            $data['temperature'] = null;
+        }
+        if (isset($data['humidity']) && ($data['humidity'] < 0 || $data['humidity'] > 100)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range humidity :" . $data['humidity']);
+            $data['humidity'] = null;
+        }
+        if (isset($data['pressure']) && ($data['pressure'] < 300 || $data['pressure'] > 1100)) {
+            Log::channel('validation')->info("Terdeteksi Out Of Range pressure :" . $data['pressure']);
+            $data['pressure'] = null;
+        }
 
         // Create entry in WAQMS_Valid and WAQMS_Location
         WAQMS_Valid::create($data);
         WAQMS_Location::create($data);
 
         // Call the Validasi method
-        $validData = $this->validasi();
+        $this->validasi();
+        $data = [];
 
-        return response()->json(['message' => 'Data processed successfully.', 'validData' => $validData]);
+        // return response()->json(['message' => 'Data processed successfully.', 'validData' => $validData]);
     }
 
-    private function nullifyOutOfRangeValues($data)
-    {
-        if (isset($data['tvoc']) && ($data['tvoc'] < 0 || $data['tvoc'] > 60000)) {
-            $data['tvoc'] = null;
-        }
-        if (isset($data['eco2']) && ($data['eco2'] < 400 || $data['eco2'] > 60000)) {
-            $data['eco2'] = null;
-        }
-        if (isset($data['pm25']) && ($data['pm25'] < 0 || $data['pm25'] > 1000)) {
-            $data['pm25'] = null;
-        }
-        if (isset($data['humidity']) && $data['humidity'] >= 80 && isset($data['pm25'])) {
-            $data['pm25'] = $data['pm25'] * 0.67;
-        }
-        if (isset($data['pm10']) && ($data['pm10'] < 0 || $data['pm10'] > 1000)) {
-            $data['pm10'] = null;
-        }
-        if (isset($data['temperature']) && ($data['temperature'] < -40 || $data['temperature'] > 85)) {
-            $data['temperature'] = null;
-        }
-        if (isset($data['humidity']) && ($data['humidity'] < 0 || $data['humidity'] > 100)) {
-            $data['humidity'] = null;
-        }
-        if (isset($data['pressure']) && ($data['pressure'] < 300 || $data['pressure'] > 1100)) {
-            $data['pressure'] = null;
-        }
-        return $data;
-    }
 
     public function validasi()
     {
@@ -68,7 +72,7 @@ class SendDataController extends Controller
         $jam_low = Carbon::now('Asia/Jakarta')->subHour()->startOfMinute();
         $jam_high = Carbon::now('Asia/Jakarta')->endOfMinute();
 
-        $data = WAQMS_Raw::whereBetween('created_at', [$jam_low, $jam_high])->get();
+        $data = WAQMS_Valid::whereBetween('created_at', [$jam_low, $jam_high])->get();
         Log::channel('validation')->info("Validation window: " . $jam_low . " - " . $jam_high);
 
         Log::channel('validation')->info("Retrieved Data:");
@@ -113,7 +117,7 @@ class SendDataController extends Controller
             return isset($record[$parameter]) && !is_null($record[$parameter]);
         });
         Log::channel('validation')->info("Checking Outlier for $parameter \n");
-        if (count($filteredData) > 45) {
+        if (count($filteredData) > 45) { //Outlier Per 1 jam
             $n = count($filteredData);
             Log::channel('validation')->info("Detected $parameter data count $n > 45 per hour\n");
 

@@ -103,30 +103,30 @@ class ProfileKodularController extends Controller
         if ($pm25Dose->count() >= 1080) { //1 hari yang lalu, 24 jam * 60 data / 1 jamnya 75% 
             // Hitung rata-rata dari data 'pm25'
             $pm25Average = $pm25Dose->average();
-            $dose    = $pm25Average * $intensity * $activityFactor * $residenceFactor / $weight;
+            $dose = ($pm25Average * $intensity * $activityFactor * $residenceFactor) / $weight;
+            $RQ = $dose / 15; //15 RFD acuan 15 ug/m3 WHO 2021 per hari
         } else {
             // Jika kurang dari 480 data, set $pm25Average menjadi null
             $pm25Average = null;
             $dose = null;
+            $RQ = null;
         }
 
 
         $exposure_level = 'Tidak Ada';
 
         // Tentukan level paparan berdasarkan exposure_value
-        if ($dose === null) {
+        if ($RQ === null) {
             $exposure_level = 'Tidak Ada';
-        } elseif ($dose < 0.01) {
+        } elseif ($RQ < 0) {
             $exposure_level = 'Rendah';
-        } elseif ($dose >= 0.01 && $dose < 0.05) {
+        } elseif ($RQ >= 0 && $RQ < 1) {
             $exposure_level = 'Sedang';
-        } elseif ($dose >= 0.05 && $dose < 0.10) {
+        } elseif ($RQ >= 1) {
             $exposure_level = 'Tinggi';
-        } elseif ($dose >= 0.10) {
-            $exposure_level = 'Sangat Tinggi';
         }
         // Data ditampilkan di view
-        $exposureValue = $dose ? $dose : null;
+        $exposureValue = $RQ ? number_format($RQ, 2) : null;
 
         $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 

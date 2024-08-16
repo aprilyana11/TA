@@ -10,20 +10,28 @@ class WAQMSLocationSeeder extends Seeder
 {
     public function run()
     {
-        $locations = [];
-        $currentTime = Carbon::now();
-        $startTime = $currentTime->copy()->subWeek();
+        $startDate = Carbon::create(2024, 1, 1, 0, 0, 0); // Start date
+        $endDate = Carbon::create(2024, 12, 31, 23, 59, 0); // End date
 
-        while ($startTime->lessThan($currentTime)) {
+        $interval = 2; // Interval in minutes
+        $locations = [];
+
+        $currentDate = $startDate;
+
+        while ($currentDate->lessThanOrEqualTo($endDate)) {
             $locations[] = [
-                'created_at' => $startTime->toDateTimeString(),
+                'created_at' => $currentDate->toDateTimeString(), // Corrected to use $currentDate
                 'longitude' => $this->generateRandomLongitude(),
                 'latitude' => $this->generateRandomLatitude()
             ];
-            $startTime->addMinutes(10);
+            $currentDate->addMinutes($interval);
         }
 
-        DB::table('waqms_location')->insert($locations);
+        // Insert data in chunks to avoid memory issues
+        $chunks = array_chunk($locations, 500); // Adjust chunk size as necessary
+        foreach ($chunks as $chunk) {
+            DB::table('waqms_location')->insert($chunk);
+        }
     }
 
     private function generateRandomLongitude()

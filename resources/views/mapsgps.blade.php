@@ -27,21 +27,20 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/waqmsmaps">Home</a>
+            <a class="nav-link" href="/waqmsmaps" data-page="home">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/datamaps">Data</a>
-          </li>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/data-location">location</a>
+            <a class="nav-link" href="/datamaps" data-page="data">Data</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/history">History</a>
+            <a class="nav-link" href="/data-location" data-page="location">Location</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/dashboard">Dashboard
-              <!-- Add more navigation items as needed -->
+            <a class="nav-link" href="/history" data-page="history">History</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/dashboard" data-page="dashboard">Dashboard</a>
+          </li>
         </ul>
       </div>
     </div>
@@ -96,7 +95,6 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
   <script>
     var map = L.map("map").setView([-6.973007, 107.6316854], 15);
-
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       maxZoom: 19,
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -123,30 +121,56 @@
     function updateMap(locations) {
       if (locations.length === 0) return;
 
+      // Initial marker (first location)
       var initialMarker = L.marker([locations[0].latitude, locations[0].longitude], {
         icon: redIcon
-      }).addTo(map).bindTooltip(`Latitude: ${locations[0].latitude}, Longitude: ${locations[0].longitude}, Date: ${new Date(locations[0].created_at).toLocaleDateString()}, Time: ${new Date(locations[0].created_at).toLocaleTimeString()}`);
+      }).addTo(map).bindTooltip(`
+    PM2.5: ${locations[0].pm25} µg/m³<br>
+    PM10: ${locations[0].pm10} µg/m³<br>
+    Temperature: ${locations[0].temperature} °C<br>
+    Humidity: ${locations[0].humidity} %<br>
+    Date: ${new Date(locations[0].created_at).toLocaleDateString()}<br>
+    Time: ${new Date(locations[0].created_at).toLocaleTimeString()}
+  `);
 
+      // Updated marker (last location)
       var updatedMarker = L.marker([locations[locations.length - 1].latitude, locations[locations.length - 1].longitude], {
         icon: blueIcon
-      }).addTo(map).bindTooltip(`Latitude: ${locations[locations.length - 1].latitude}, Longitude: ${locations[locations.length - 1].longitude}, Date: ${new Date(locations[locations.length - 1].created_at).toLocaleDateString()}, Time: ${new Date(locations[locations.length - 1].created_at).toLocaleTimeString()}`);
+      }).addTo(map).bindTooltip(`
+    PM2.5: ${locations[locations.length - 1].pm25} µg/m³<br>
+    PM10: ${locations[locations.length - 1].pm10} µg/m³<br>
+    Temperature: ${locations[locations.length - 1].temperature} °C<br>
+    Humidity: ${locations[locations.length - 1].humidity} %<br>
+    Date: ${new Date(locations[locations.length - 1].created_at).toLocaleDateString()}<br>
+    Time: ${new Date(locations[locations.length - 1].created_at).toLocaleTimeString()}
+  `);
 
+      // Add polyline connecting all points
       var polyline = L.polyline(locations.map(function(location) {
         return [location.latitude, location.longitude];
       }), {
         color: "blue"
       }).addTo(map);
 
+      // Add markers for each location
       locations.forEach(function(location) {
         L.marker([location.latitude, location.longitude], {
           icon: blueIcon
-        }).addTo(map).bindTooltip(`Latitude: ${location.latitude}, Longitude: ${location.longitude}, Date: ${new Date(location.created_at).toLocaleDateString()}, Time: ${new Date(location.created_at).toLocaleTimeString()}`);
+        }).addTo(map).bindTooltip(`
+      PM2.5: ${location.pm25} µg/m³<br>
+      PM10: ${location.pm10} µg/m³<br>
+      Temperature: ${location.temperature} °C<br>
+      Humidity: ${location.humidity} %<br>
+      Date: ${new Date(location.created_at).toLocaleDateString()}<br>
+      Time: ${new Date(location.created_at).toLocaleTimeString()}
+    `);
       });
 
+      // Update the last received data section
       document.getElementById("time_date").innerHTML = new Date(locations[locations.length - 1].created_at).toLocaleDateString();
       document.getElementById("time_time").innerHTML = new Date(locations[locations.length - 1].created_at).toLocaleTimeString();
-      document.getElementById("latitude").innerHTML = locations[locations.length - 1].latitude;
-      document.getElementById("longitude").innerHTML = locations[locations.length - 1].longitude;
+      document.getElementById("latitude").innerHTML = locations[locations.length - 1].pm25; // Adjusted to show pm25
+      document.getElementById("longitude").innerHTML = locations[locations.length - 1].pm10; // Adjusted to show pm10
     }
 
     fetch('api/location')
@@ -155,6 +179,32 @@
         updateMap(data);
       })
       .catch(error => console.error('Error fetching location data:', error));
+
+    // JavaScript to handle navigation
+    (function() {
+      const allowedPages = new Set(['home', 'data', 'location', 'history', 'dashboard']);
+
+      function handleLinkClick(event) {
+        const page = event.target.getAttribute('data-page');
+        if (allowedPages.has(page)) {
+          return; // Allow navigation
+        }
+        event.preventDefault();
+        alert('Navigation is restricted to the navbar links only.');
+      }
+
+      document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+        link.addEventListener('click', handleLinkClick);
+      });
+
+      window.addEventListener('beforeunload', function(event) {
+        const hash = location.hash;
+        if (hash && !allowedPages.has(hash.slice(1))) {
+          event.preventDefault();
+          event.returnValue = ''; // For most browsers
+        }
+      });
+    })();
   </script>
 </body>
 
