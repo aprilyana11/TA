@@ -100,7 +100,7 @@ class ProfileKodularController extends Controller
         $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
 
         // Cek apakah jumlah data setidaknya 480
-        if ($pm25Dose->count() >= 1080) { //1 hari yang lalu, 24 jam * 60 data / 1 jamnya 75% 
+        if ($pm25Dose->count() >= 360) { //1 hari yang lalu, 24 jam * 60 data / 1 jamnya 75% 
             // Hitung rata-rata dari data 'pm25'
             $pm25Average = $pm25Dose->average();
             $dose = ($pm25Average * $intensity * $activityFactor * $residenceFactor) / $weight;
