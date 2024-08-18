@@ -85,281 +85,280 @@
           <title>Halaman Signup</title>
         </div>
       </section>
-      <section class="section features">
+      <div class="container">
+        <!-- <ul class="features-list">
+        <li class="features-item">
+          <div class="item-icon">
+            <ion-icon name="shield-checkmark-outline"></ion-icon>
+          </div>
+          <div>
+            <h3 class="h4 item-title">Safe Shelter</h3>
+            <p class="item-text"></p>
+          </div>
+        </li>
+        <li class="features-item">
+          <div class="item-icon">
+            <ion-icon name="water-outline"></ion-icon>
+          </div>
+          <div>
+            <h3 class="h4 item-title">Safe Water</h3>
+            <p class="item-text"></p>
+          </div>
+        </li>
+        <li class="features-item">
+          <div class="item-icon">
+            <ion-icon name="leaf-outline"></ion-icon>
+          </div>
+          <div>
+            <h3 class="h4 item-title">Ecology Save</h3>
+            <p class="item-text"></p>
+          </div>
+        </li>
+        <li class="features-item">
+          <div class="item-icon">
+            <ion-icon name="snow-outline"></ion-icon>
+          </div>
+          <div>
+            <h3 class="h4 item-title">Environment</h3>
+            <p class="item-text"></p>
+          </div>
+        </li>
+      </ul>
+      </div> -->
+        </section>
+        <section class="section about" id="about">
+          <div class="container">
+            <div class="about-banner">
+              <h2 class="deco-title">WAQMS</h2>
+              <div class="banner-row">
+                <div class="banner-col">
+                  <img src="{{ asset('images/casing.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
+                  <img src="{{ asset('images/halo.png')}}" width="386" height="250" loading="lazy" alt="" class="about-img about-img-2 w-100" />
+                </div>
+                <div class="banner-col">
+                  <img src="{{ asset('images/c.png')}}" width="250" height="277" loading="lazy" alt="" class="about-img about-img-3 w-100" />
+                  <img src="{{ asset('images/case.png')}}" width="260" height="300" loading="lazy" alt="" class="about-img w-100" />
+                </div>
+              </div>
+            </div>
+            <div class="about-content">
+              <p class="section-subtitle">
+                <img src="{{ asset('images/u.png')}}" width="30" height="7" alt="Wavy line" />
+
+                <span>Why ?</span>
+              </p>
+              <h2 class="h2 section-title">
+                Why choose<strong>Wearable ? </strong>
+              </h2>
+
+              <ul class="tab-nav">
+                <li>
+                  <button class="tab-btn active">Our Mission</button>
+                </li>
+
+                <li>
+                  <button class="tab-btn">Our Vision</button>
+                </li>
+
+                <li>
+                  <button class="tab-btn">Next Plan</button>
+                </li>
+              </ul>
+
+              <div class="tab-content">
+                <p class="section-text">
+                  This device is designed for personal daily air quality
+                  monitoring, aimed at measuring air quality parameters and
+                  evaluating exposure based on IoT.
+                </p>
+
+                <ul class="tab-list">
+                  <li class="tab-item">
+                    <div class="item-icon">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                    </div>
+
+                    <p class="tab-text">Personal Exposure Tracking</p>
+                  </li>
+
+                  <li class="tab-item">
+                    <div class="item-icon">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                    </div>
+
+                    <p class="tab-text">Historical Data Access</p>
+
+                  </li>
+
+                  <li class="tab-item">
+                    <div class="item-icon">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                    </div>
+
+                    <p class="tab-text">Enhanced Mobility</p>
+                  </li>
+
+                  <li class="tab-item">
+                    <div class="item-icon">
+                      <ion-icon name="checkmark-circle"></ion-icon>
+                    </div>
+
+                    <p class="tab-text">Health Protection</p>
+                  </li>
+                </ul>
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- 
+        - #Feature
+      -->
+
         <div class="container">
-          <ul class="features-list">
-            <li class="features-item">
-              <div class="item-icon">
-                <ion-icon name="shield-checkmark-outline"></ion-icon>
-              </div>
-              <div>
-                <h3 class="h4 item-title">Safe Shelter</h3>
-                <p class="item-text"></p>
+          <p class="section-subtitle">
+            <img src="{{ asset('images/u.png')}}" width="32" height="7" alt="Wavy line" />
+
+            <span>What We Do</span>
+          </p>
+
+          <h2 class="h2 section-title">
+            We Work Differently to <strong>keep The Healthy Safe</strong>
+          </h2>
+
+          <ul class="service-list">
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="leaf-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">
+                  Real-Time Air Quality Monitoring
+                </h3>
+
+                <p class="card-text">
+                  Stay updated with the latest air quality information around
+                  you. Our system provides real-time data, ensuring you are
+                  always aware of the air you are breathing.
+                </p>
+
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
               </div>
             </li>
-            <li class="features-item">
-              <div class="item-icon">
-                <ion-icon name="water-outline"></ion-icon>
-              </div>
-              <div>
-                <h3 class="h4 item-title">Safe Water</h3>
-                <p class="item-text"></p>
+
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="earth-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Compact and Wearable Design</h3>
+
+                <p class="card-text">
+                  Experience the convenience of our lightweight and
+                  ergonomically designed device. Wear it comfortably
+                  throughout the day and monitor air quality wherever you go.
+                </p>
+
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
               </div>
             </li>
-            <li class="features-item">
-              <div class="item-icon">
-                <ion-icon name="leaf-outline"></ion-icon>
-              </div>
-              <div>
-                <h3 class="h4 item-title">Ecology Save</h3>
-                <p class="item-text"></p>
+
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="flower-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Advanced Sensor Technology</h3>
+
+                <p class="card-text">
+                  Benefit from cutting-edge sensors that detect various
+                  pollutants, including particulate matter (PM2.5 and PM10),
+                  Equivalent carbon dioxide (ECO2), and Total volatile organic
+                  compounds (TVOCs), Temperature, Humidity.
+                </p>
+
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
               </div>
             </li>
-            <li class="features-item">
-              <div class="item-icon">
-                <ion-icon name="snow-outline"></ion-icon>
-              </div>
-              <div>
-                <h3 class="h4 item-title">Environment</h3>
-                <p class="item-text"></p>
+
+            <li>
+              <div class="service-card">
+                <div class="card-icon">
+                  <ion-icon name="boat-outline"></ion-icon>
+                </div>
+
+                <h3 class="h3 card-title">Mobile App Integration</h3>
+
+                <p class="card-text">
+                  Easily sync the device with our user-friendly mobile app to
+                  access detailed insights, historical data, and personalized
+                  alerts directly on your smartphone.
+                </p>
+
+                <a href="#" class="btn-link">
+                  <span>Read More</span>
+
+                  <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
+                </a>
+
               </div>
             </li>
           </ul>
         </div>
-      </section>
-      <section class="section about" id="about">
-        <div class="container">
-          <div class="about-banner">
-            <h2 class="deco-title">WAQMS</h2>
-            <div class="banner-row">
-              <div class="banner-col">
-                <img src="{{ asset('images/casing.png')}}" width="315" height="380" loading="lazy" alt="Tiger" class="about-img w-100" />
-                <img src="{{ asset('images/halo.png')}}" width="386" height="250" loading="lazy" alt="" class="about-img about-img-2 w-100" />
-              </div>
-              <div class="banner-col">
-                <img src="{{ asset('images/c.png')}}" width="250" height="277" loading="lazy" alt="" class="about-img about-img-3 w-100" />
-                <img src="{{ asset('images/case.png')}}" width="260" height="300" loading="lazy" alt="" class="about-img w-100" />
-              </div>
-            </div>
-          </div>
-          <div class="about-content">
-            <p class="section-subtitle">
-              <img src="{{ asset('images/u.png')}}" width="30" height="7" alt="Wavy line" />
-
-              <span>Why ?</span>
-            </p>
-            <h2 class="h2 section-title">
-              Why choose<strong>Wearable ? </strong>
-            </h2>
-
-            <ul class="tab-nav">
-              <li>
-                <button class="tab-btn active">Our Mission</button>
-              </li>
-
-              <li>
-                <button class="tab-btn">Our Vision</button>
-              </li>
-
-              <li>
-                <button class="tab-btn">Next Plan</button>
-              </li>
-            </ul>
-
-            <div class="tab-content">
-              <p class="section-text">
-                This device is designed for personal daily air quality
-                monitoring, aimed at measuring air quality parameters and
-                evaluating exposure based on IoT.
-              </p>
-
-              <ul class="tab-list">
-                <li class="tab-item">
-                  <div class="item-icon">
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                  </div>
-
-                  <p class="tab-text">Personal Exposure Tracking</p>
-                </li>
-
-                <li class="tab-item">
-                  <div class="item-icon">
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                  </div>
-
-                  <p class="tab-text">Historical Data Access</p>
-
-                </li>
-
-                <li class="tab-item">
-                  <div class="item-icon">
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                  </div>
-
-                  <p class="tab-text">Enhanced Mobility</p>
-                </li>
-
-                <li class="tab-item">
-                  <div class="item-icon">
-                    <ion-icon name="checkmark-circle"></ion-icon>
-                  </div>
-
-                  <p class="tab-text">Health Protection</p>
-                </li>
-              </ul>
-              </button>
-            </div>
-          </div>
+        </section>
+        <div class="qr-container">
+          <button id="qr-toggle" class="qr-toggle" aria-label="Toggle QR Code">
+            <ion-icon name="close-outline"></ion-icon>
+          </button>
+          <img
+            src="{{ asset('images/qr.png') }}"
+            class="qr-image"
+            alt="QR Code">
         </div>
-      </section>
-      <!-- 
-        - #Feature
-      -->
 
-      <div class="container">
-        <p class="section-subtitle">
-          <img src="{{ asset('images/u.png')}}" width="32" height="7" alt="Wavy line" />
+        <script src="{{ asset('js/script2.js') }}"></script>
 
-          <span>What We Do</span>
-        </p>
+        <script>
+          function updateImageSource() {
+            const image = document.getElementById('qr-image');
+            const width = window.innerWidth;
 
-        <h2 class="h2 section-title">
-          We Work Differently to <strong>keep The Healthy Safe</strong>
-        </h2>
-
-        <ul class="service-list">
-          <li>
-            <div class="service-card">
-              <div class="card-icon">
-                <ion-icon name="leaf-outline"></ion-icon>
-              </div>
-
-              <h3 class="h3 card-title">
-                Real-Time Air Quality Monitoring
-              </h3>
-
-              <p class="card-text">
-                Stay updated with the latest air quality information around
-                you. Our system provides real-time data, ensuring you are
-                always aware of the air you are breathing.
-              </p>
-
-              <a href="#" class="btn-link">
-                <span>Read More</span>
-
-                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="service-card">
-              <div class="card-icon">
-                <ion-icon name="earth-outline"></ion-icon>
-              </div>
-
-              <h3 class="h3 card-title">Compact and Wearable Design</h3>
-
-              <p class="card-text">
-                Experience the convenience of our lightweight and
-                ergonomically designed device. Wear it comfortably
-                throughout the day and monitor air quality wherever you go.
-              </p>
-
-              <a href="#" class="btn-link">
-                <span>Read More</span>
-
-                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="service-card">
-              <div class="card-icon">
-                <ion-icon name="flower-outline"></ion-icon>
-              </div>
-
-              <h3 class="h3 card-title">Advanced Sensor Technology</h3>
-
-              <p class="card-text">
-                Benefit from cutting-edge sensors that detect various
-                pollutants, including particulate matter (PM2.5 and PM10),
-                Equivalent carbon dioxide (ECO2), and Total volatile organic
-                compounds (TVOCs), Temperature, Humidity.
-              </p>
-
-              <a href="#" class="btn-link">
-                <span>Read More</span>
-
-                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-              </a>
-            </div>
-          </li>
-
-          <li>
-            <div class="service-card">
-              <div class="card-icon">
-                <ion-icon name="boat-outline"></ion-icon>
-              </div>
-
-              <h3 class="h3 card-title">Mobile App Integration</h3>
-
-              <p class="card-text">
-                Easily sync the device with our user-friendly mobile app to
-                access detailed insights, historical data, and personalized
-                alerts directly on your smartphone.
-              </p>
-
-              <a href="#" class="btn-link">
-                <span>Read More</span>
-
-                <ion-icon name="arrow-forward" aria-hidden="true"></ion-icon>
-              </a>
-
-            </div>
-          </li>
-        </ul>
-      </div>
-      </section>
-      <div class="qr-container">
-        <button id="qr-toggle" class="qr-toggle" aria-label="Toggle QR Code">
-          <ion-icon name="close-outline"></ion-icon>
-        </button>
-        <img
-          src="{{ asset('images/qr.png') }}"
-          class="qr-image"
-          alt="QR Code">
-      </div>
-
-      <script src="{{ asset('js/script2.js') }}"></script>
-
-      <script>
-        function updateImageSource() {
-          const image = document.getElementById('qr-image');
-          const width = window.innerWidth;
-
-          if (width <= 599) {
-            image.src = "{{ asset('images/qr.png') }}";
-          } else if (width <= 999) {
-            image.src = "{{ asset('images/qr.png') }}";
-          } else {
-            image.src = "{{ asset('images/qr.png') }}";
+            if (width <= 599) {
+              image.src = "{{ asset('images/qr.png') }}";
+            } else if (width <= 999) {
+              image.src = "{{ asset('images/qr.png') }}";
+            } else {
+              image.src = "{{ asset('images/qr.png') }}";
+            }
           }
-        }
 
-        // Initial load
-        updateImageSource();
+          // Initial load
+          updateImageSource();
 
-        // Update image source on window resize
-        window.addEventListener('resize', updateImageSource);
-      </script>
+          // Update image source on window resize
+          window.addEventListener('resize', updateImageSource);
+        </script>
 
-      <!-- 
+        <!-- 
 - ionicon link
 -->
-      <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-      <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
