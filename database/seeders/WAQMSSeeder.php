@@ -13,9 +13,9 @@ class WAQMSSeeder extends Seeder
      */
     public function run(): void
     {
-        $startDate = Carbon::create(2024, 1, 1, 0, 0, 0); // Mulai dari 2024-01-01 00:00:00
-        $endDate = Carbon::create(2024, 12, 31, 23, 59, 0); // Akhir tahun 2024
-        $interval = 2; // Interval dalam menit
+        $startDate = Carbon::create(2024, 8, 19, 0, 0, 0); // Mulai dari 2024-01-01 00:00:00
+        $endDate = Carbon::create(2024, 8, 21, 23, 59, 0); // Akhir tahun 2024
+        $interval = 10; // Interval dalam menit
 
         $data = [];
         $currentDate = $startDate;
@@ -31,7 +31,7 @@ class WAQMSSeeder extends Seeder
                 'eco2' => rand(400, 2000), // Nilai acak antara 400 dan 2000
                 'pressure' => number_format(rand(900, 1100) / 10, 1), // Nilai acak antara 90.0 dan 110.0
             ];
-            $currentDate->addMinutes($interval);
+            $currentDate->addSeconds($interval);
         }
 
         $chunks = array_chunk($data, 1000);

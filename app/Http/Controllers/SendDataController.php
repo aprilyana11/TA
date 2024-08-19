@@ -80,7 +80,7 @@ class SendDataController extends Controller
             Log::channel('validation')->info("Time: $record->created_at | T: $record->temperature | RH: $record->humidity | PM2.5: $record->pm25 | PM10: $record->pm10 | eCO2: $record->eco2 | TVOC: $record->tvoc");
         }
 
-        $parameters = ['temperature', 'humidity', 'pm25', 'pm10', 'eco2', 'tvoc'];
+        $parameters = ['eco2', 'tvoc'];
 
         // Apply outlier filtering for each parameter
         foreach ($parameters as $parameter) {

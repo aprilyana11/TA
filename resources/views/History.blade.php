@@ -122,35 +122,35 @@
               var newRow = document.createElement("tr");
 
               var dateCell = document.createElement("td");
-              dateCell.textContent = new Date(data.created_at).toLocaleDateString();
+              dateCell.textContent = new Date(data.time).toLocaleDateString();
               newRow.appendChild(dateCell);
 
               var timeCell = document.createElement("td");
-              timeCell.textContent = new Date(data.created_at).toLocaleTimeString();
+              timeCell.textContent = new Date(data.time).toLocaleTimeString();
               newRow.appendChild(timeCell);
 
               var tempCell = document.createElement("td");
-              tempCell.textContent = data.temperature + " C";
+              tempCell.textContent = data.temperature.toFixed(2) + " C";
               newRow.appendChild(tempCell);
 
               var humidityCell = document.createElement("td");
-              humidityCell.textContent = data.humidity + " %";
+              humidityCell.textContent = data.humidity.toFixed(0) + " %";
               newRow.appendChild(humidityCell);
 
               var pm25Cell = document.createElement("td");
-              pm25Cell.textContent = data.pm25 + " ugr/m^3";
+              pm25Cell.textContent = data.pm25.toFixed(0) + " ug/m^3";
               newRow.appendChild(pm25Cell);
 
               var pm10Cell = document.createElement("td");
-              pm10Cell.textContent = data.pm10;
+              pm10Cell.textContent = data.pm10.toFixed(0);
               newRow.appendChild(pm10Cell);
 
               var tvocCell = document.createElement("td");
-              tvocCell.textContent = data.tvoc;
+              tvocCell.textContent = data.tvoc.toFixed(0);
               newRow.appendChild(tvocCell);
 
               var eco2Cell = document.createElement("td");
-              eco2Cell.textContent = data.eco2;
+              eco2Cell.textContent = data.eco2.toFixed(0);
               newRow.appendChild(eco2Cell);
 
               tableBody.appendChild(newRow);
