@@ -72,11 +72,11 @@
               var newRow = document.createElement("tr");
 
               var dateCell = document.createElement("td");
-              dateCell.textContent = new Date(data.created_at).toLocaleDateString();
+              dateCell.textContent = new Date(data.time).toLocaleDateString();
               newRow.appendChild(dateCell);
 
               var timeCell = document.createElement("td");
-              timeCell.textContent = new Date(data.created_at).toLocaleTimeString();
+              timeCell.textContent = new Date(data.time).toLocaleTimeString();
               newRow.appendChild(timeCell);
 
               var tempCell = document.createElement("td");

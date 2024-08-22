@@ -14,45 +14,22 @@ class PersonalExposureController extends Controller
 {
     public function showPersonalExposure()
     {
-        $yesterday1 = Carbon::now()->subDay()->startOfDay();
-        $yesterday2 = Carbon::now()->subDay()->endOfDay();
+        $yesterday1 = Carbon::now()->subHour()->startOfHour();
+        $yesterday2 = Carbon::now()->subHour()->endOfHour();
         $data = WAQMS_Valid::latest('created_at')->first();
 
         // Ambil data dari database
         $user = Auth::user();
         $weight = $user->weight; // Berat badan dari user
 
-
-        // $concentration = $this->getPM25Concentration();
-        $concentration = [];
-        // Menentukan Intake Rate berdasarkan usia
-        if ($user->age <= 1) {
-            $intensity = 4.5; // Laju inhalasi untuk bayi (0-1 tahun)
-            $activityFactor = 1.2; // Faktor aktivitas untuk bayi (0-1 tahun)
-            $residenceFactor = 0.9; // Faktor residensi untuk bayi (0-1 tahun)
-        } elseif ($user->age <= 5) {
-            $intensity = 9.0; // Laju inhalasi untuk anak-anak (1-5 tahun)
-            $activityFactor = 1.3; // Faktor aktivitas untuk anak-anak (1-5 tahun)
-            $residenceFactor = 0.85; // Faktor residensi untuk anak-anak (1-5 tahun)
-        } elseif ($user->age <= 12) {
-            $intensity = 13.5; // Laju inhalasi untuk anak-anak (6-12 tahun)
-            $activityFactor = 1.1; // Faktor aktivitas untuk anak-anak (6-12 tahun)
-            $residenceFactor = 0.75; // Faktor residensi untuk anak-anak (6-12 tahun)
-        } elseif ($user->age >= 65) {
-            $intensity = 13.0; // Laju inhalasi untuk lansia (65+ tahun)
-            $activityFactor = 0.9; // Faktor aktivitas untuk lansia (65+ tahun)
-            $residenceFactor = 0.85; // Faktor residensi untuk lansia (65+ tahun)
-        } else {
-            $intensity = 18.0; // Laju inhalasi default untuk orang dewasa (18-64 tahun)
-            $activityFactor = 1.0; // Faktor aktivitas default untuk orang dewasa (18-64 tahun)
-            $residenceFactor = 0.7; // Faktor residensi default untuk orang dewasa (18-64 tahun)
-        }
+        $intensity = 0.83; // Laju inhalasi default untuk orang dewasa 
+        $activityFactor = 1.0; // Faktor aktivitas 
+        $residenceFactor = 1.0; // Faktor residensi 
 
         // Gunakan $intensity, $activityFactor, dan $residenceFactor dalam perhitungan dosis
 
-
-
         // Jika gagal mendapatkan nilai dari Thingspeak, gunakan nilai default
+        $dose = (15 * $intensity * $residenceFactor * $activityFactor) / 70;
 
         if ($data === null) {
             $pm25 = null;
@@ -65,49 +42,40 @@ class PersonalExposureController extends Controller
             $data['tvoc'] = '-';
             $data['eco2'] = '-';
             $dose = '-';
+            $doseCalculate = '-';
             // Data ditampilkan di view
             $exposure_level = '-'; // harus diubah sesuai dengan logika
-            $exposureValue = '-';
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
         } else {
             $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
 
-            // Cek apakah jumlah data setidaknya 360
-            if ($pm25Dose->count() >= 360) { // 8jamjam * 60 data / 1 jamnya 75% 
+            // Cek apakah jumlah data setidaknya 45
+            if ($pm25Dose->count() >= 45) { //1jam * 60 data / 1 jamnya 75% 
                 // Hitung rata-rata dari data 'pm25'
                 $pm25Average = $pm25Dose->average();
-                $dose = ($pm25Average * $intensity * $activityFactor * $residenceFactor) / $weight;
-                $RQ = $dose / 15; //15 RFD acuan 15 ug/m3 WHO 2021 per hari
+                $doseCalculate = ($pm25Average * 0.83 * 1 * 1) / $weight;
+                $doseCalculate = number_format($doseCalculate, 3);
             } else {
-                // Jika kurang dari 360 data, set $pm25Average menjadi null
+                // Jika kurang dari 45 data, set $pm25Average menjadi null
                 $pm25Average = null;
-                $dose = null;
-                $RQ = null;
             }
-
 
             $exposure_level = '-';
 
             // Tentukan level paparan berdasarkan exposure_value
-            if ($RQ === null) {
+            if ($dose === null) {
                 $exposure_level = 'Tidak Ada';
-            } elseif ($RQ < 0) {
-                $exposure_level = 'Rendah';
-            } elseif ($RQ >= 0 && $RQ < 1) {
-                $exposure_level = 'Sedang';
-            } elseif ($RQ >= 1) {
-                $exposure_level = 'Tinggi';
+            } elseif ($doseCalculate <= $dose) {
+                $exposure_level = 'Sangat Aman';
+            } elseif ($doseCalculate > $dose && $doseCalculate <= 0.2) {
+                $exposure_level = 'Aman';
+            } else {
+                $exposure_level = 'Berbahaya';
             }
-
-            // Data ditampilkan di view
-            $exposureValue = $RQ ? number_format($RQ, 2) : null;
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
+
         }
-
-        // Hitung dosis paparan
-
-
 
         return view('index3', [
             'created_at' => $data['created_at'],
@@ -120,7 +88,7 @@ class PersonalExposureController extends Controller
             'eco2' => $data['eco2'],
 
             'exposure_level' => $exposure_level,
-            'exposureValue' => $exposureValue,
+            'exposureValue' => $doseCalculate,
             'recommendationTime' => $recommendationTime
         ]);
     }

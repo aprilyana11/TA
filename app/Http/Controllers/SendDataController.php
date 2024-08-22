@@ -31,10 +31,10 @@ class SendDataController extends Controller
             Log::channel('validation')->info("Terdeteksi Out Of Range pm25 :" . $data['pm25']);
             $data['pm25'] = null;
         }
-        if (isset($data['humidity']) && $data['humidity'] >= 80 && isset($data['pm25'])) {
-            Log::channel('validation')->info("Terdeteksi Humidity diatas 80% dengan nilai PM25 :" . $data['pm25']);
-            $data['pm25'] = $data['pm25'] * 0.67;
-        }
+        // if (isset($data['humidity']) && $data['humidity'] >= 80 && isset($data['pm25'])) {
+        // Log::channel('validation')->info("Terdeteksi Humidity diatas 80% dengan nilai PM25 :" . $data['pm25']);
+        //     $data['pm25'] = $data['pm25'] * 0.67;
+        // }
         if (isset($data['pm10']) && ($data['pm10'] < 0 || $data['pm10'] > 1000)) {
             Log::channel('validation')->info("Terdeteksi Out Of Range pm10 :" . $data['pm10']);
             $data['pm10'] = null;
@@ -80,7 +80,7 @@ class SendDataController extends Controller
             Log::channel('validation')->info("Time: $record->created_at | T: $record->temperature | RH: $record->humidity | PM2.5: $record->pm25 | PM10: $record->pm10 | eCO2: $record->eco2 | TVOC: $record->tvoc");
         }
 
-        $parameters = ['eco2', 'tvoc'];
+        $parameters = ['temperature', 'humidity', 'pm25', 'pm10', 'eco2', 'tvoc'];
 
         // Apply outlier filtering for each parameter
         foreach ($parameters as $parameter) {
