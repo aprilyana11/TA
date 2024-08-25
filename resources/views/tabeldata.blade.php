@@ -105,19 +105,19 @@
             newRow.appendChild(humidityCell);
 
             var pm25Cell = document.createElement("td");
-            pm25Cell.textContent = data.pm25 + "ugr/m^3";
+            pm25Cell.textContent = data.pm25 + "µg/m³";
             newRow.appendChild(pm25Cell);
 
             var pm10Cell = document.createElement("td");
-            pm10Cell.textContent = data.pm10;
+            pm10Cell.textContent = data.pm10 + "µg/m³";
             newRow.appendChild(pm10Cell);
 
             var tvocCell = document.createElement("td");
-            tvocCell.textContent = data.tvoc;
+            tvocCell.textContent = data.tvoc + "mg³/m³";
             newRow.appendChild(tvocCell);
 
             var eco2Cell = document.createElement("td");
-            eco2Cell.textContent = data.eco2;
+            eco2Cell.textContent = data.eco2 + "ppm";
             newRow.appendChild(eco2Cell);
 
             tableBody.appendChild(newRow);
