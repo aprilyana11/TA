@@ -28,7 +28,7 @@
         <th>Time</th>
         <th>Temperature (C)</th>
         <th>Humidity (%)</th>
-        <th>PM2.5 (%)</th>
+        <th>PM2.5 </th>
         <th>PM10</th>
         <th>TVOC</th>
         <th>ECO2</th>
@@ -80,27 +80,27 @@
               newRow.appendChild(timeCell);
 
               var tempCell = document.createElement("td");
-              tempCell.textContent = data.temperature + " C";
+              tempCell.textContent = parseFloat(data.temperature).toFixed(2) + " C";
               newRow.appendChild(tempCell);
 
               var humidityCell = document.createElement("td");
-              humidityCell.textContent = data.humidity + " %";
+              humidityCell.textContent = parseFloat(data.humidity).toFixed(2) + " %";
               newRow.appendChild(humidityCell);
 
               var pm25Cell = document.createElement("td");
-              pm25Cell.textContent = data.pm25 + " ugr/m^3";
+              pm25Cell.textContent = parseFloat(data.pm25).toFixed(2) + "µg/m³";
               newRow.appendChild(pm25Cell);
 
               var pm10Cell = document.createElement("td");
-              pm10Cell.textContent = data.pm10;
+              pm10Cell.textContent = parseFloat(data.pm10).toFixed(2) + "µg/m³";
               newRow.appendChild(pm10Cell);
 
               var tvocCell = document.createElement("td");
-              tvocCell.textContent = data.tvoc;
+              tvocCell.textContent = parseFloat(data.tvoc).toFixed(2) + "mg³/m³";
               newRow.appendChild(tvocCell);
 
               var eco2Cell = document.createElement("td");
-              eco2Cell.textContent = data.eco2;
+              eco2Cell.textContent = parseFloat(data.eco2).toFixed(2) + "ppm";
               newRow.appendChild(eco2Cell);
 
               tableBody.appendChild(newRow);

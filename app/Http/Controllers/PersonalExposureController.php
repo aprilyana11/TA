@@ -9,7 +9,6 @@ use App\Models\User;
 use App\Models\WAQMS_Valid;
 use Carbon\Carbon;
 
-
 class PersonalExposureController extends Controller
 {
     public function showPersonalExposure()
@@ -31,33 +30,34 @@ class PersonalExposureController extends Controller
         // Jika gagal mendapatkan nilai dari Thingspeak, gunakan nilai default
         $dose = (15 * $intensity * $residenceFactor * $activityFactor) / 70;
 
+        // Inisialisasi $doseCalculate untuk menangani kasus di mana variabel ini mungkin tidak diatur
+        $doseCalculate = null;
+
         if ($data === null) {
             $pm25 = null;
-            $data['created_at'] = '-';
-            $data['pm25'] = '-';
-            $data['pm10'] = '-';
-            $data['temperature'] = '-';
-            $data['humidity'] = '-';
-            $data['pressure'] = '-';
-            $data['tvoc'] = '-';
-            $data['eco2'] = '-';
-            $dose = '-';
-            $doseCalculate = '-';
-            // Data ditampilkan di view
+            $data = [
+                'created_at' => '-',
+                'pm25' => '-',
+                'pm10' => '-',
+                'temperature' => '-',
+                'humidity' => '-',
+                'pressure' => '-',
+                'tvoc' => '-',
+                'eco2' => '-'
+            ];
             $exposure_level = '-'; // harus diubah sesuai dengan logika
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh
 
         } else {
-            $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');;
+            $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');
 
             // Cek apakah jumlah data setidaknya 45
             if ($pm25Dose->count() >= 45) { //1jam * 60 data / 1 jamnya 75% 
                 // Hitung rata-rata dari data 'pm25'
                 $pm25Average = $pm25Dose->average();
                 $doseCalculate = ($pm25Average * 0.83 * 1 * 1) / $weight;
-                $doseCalculate = number_format($doseCalculate, 3);
+                $doseCalculate = number_format($doseCalculate, 2);
             } else {
-                // Jika kurang dari 45 data, set $pm25Average menjadi null
                 $pm25Average = null;
             }
 
