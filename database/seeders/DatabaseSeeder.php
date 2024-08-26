@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             WAQMSSeeder::class,
             // WAQMSSeeder_raw::class,
-            // WAQMSLocationSeeder::class,
+            WAQMSLocationSeeder::class,
         ]);
     }
 }

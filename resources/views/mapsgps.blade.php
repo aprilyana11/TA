@@ -103,10 +103,10 @@
     var blueIcon = new L.Icon({
       iconUrl: "https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png",
       shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png",
-      iconSize: [25, 41],
+      iconSize: [2, 2],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
-      shadowSize: [41, 41],
+      shadowSize: [0, 0],
     });
 
     var redIcon = new L.Icon({
@@ -118,93 +118,83 @@
       shadowSize: [41, 41],
     });
 
+    var smallDotIcon = L.divIcon({
+      className: 'small-dot-icon',
+      html: '<div style="width: 10px; height: 10px; background-color: blue; border-radius: 50%;"></div>',
+      iconSize: [2, 2],
+      iconAnchor: [1, 1],
+    });
+
     function updateMap(locations) {
       if (locations.length === 0) return;
 
       // Initial marker (first location)
-      var initialMarker = L.marker([locations[0].latitude, locations[0].longitude], {
+      L.marker([locations[0].latitude, locations[0].longitude], {
         icon: redIcon
       }).addTo(map).bindTooltip(`
-    PM2.5: ${locations[0].pm25} µg/m³<br>
-    PM10: ${locations[0].pm10} µg/m³<br>
-    Temperature: ${locations[0].temperature} °C<br>
-    Humidity: ${locations[0].humidity} %<br>
-    Date: ${new Date(locations[0].created_at).toLocaleDateString()}<br>
-    Time: ${new Date(locations[0].created_at).toLocaleTimeString()}
-  `);
+        PM2.5: ${locations[0].pm25} µg/m³<br>
+        PM10: ${locations[0].pm10} µg/m³<br>
+        Temperature: ${locations[0].temperature} °C<br>
+        Humidity: ${locations[0].humidity} %<br>
+        Date: ${new Date(locations[0].created_at).toLocaleDateString()}<br>
+        Time: ${new Date(locations[0].created_at).toLocaleTimeString()}
+      `);
+
+      // Add small dots for each location except the last one
+      locations.slice(1, -1).forEach(function(location) {
+        L.marker([location.latitude, location.longitude], {
+          icon: smallDotIcon
+        }).addTo(map).bindTooltip(`
+          PM2.5: ${location.pm25} µg/m³<br>
+          PM10: ${location.pm10} µg/m³<br>
+          Temperature: ${location.temperature} °C<br>
+          Humidity: ${location.humidity} %<br>
+          Date: ${new Date(location.created_at).toLocaleDateString()}<br>
+          Time: ${new Date(location.created_at).toLocaleTimeString()}
+        `);
+      });
 
       // Updated marker (last location)
-      var updatedMarker = L.marker([locations[locations.length - 1].latitude, locations[locations.length - 1].longitude], {
+      L.marker([locations[locations.length - 1].latitude, locations[locations.length - 1].longitude], {
         icon: blueIcon
       }).addTo(map).bindTooltip(`
-    PM2.5: ${locations[locations.length - 1].pm25} µg/m³<br>
-    PM10: ${locations[locations.length - 1].pm10} µg/m³<br>
-    Temperature: ${locations[locations.length - 1].temperature} °C<br>
-    Humidity: ${locations[locations.length - 1].humidity} %<br>
-    Date: ${new Date(locations[locations.length - 1].created_at).toLocaleDateString()}<br>
-    Time: ${new Date(locations[locations.length - 1].created_at).toLocaleTimeString()}
-  `);
+        PM2.5: ${locations[locations.length - 1].pm25} µg/m³<br>
+        PM10: ${locations[locations.length - 1].pm10} µg/m³<br>
+        Temperature: ${locations[locations.length - 1].temperature} °C<br>
+        Humidity: ${locations[locations.length - 1].humidity} %<br>
+        Date: ${new Date(locations[locations.length - 1].created_at).toLocaleDateString()}<br>
+        Time: ${new Date(locations[locations.length - 1].created_at).toLocaleTimeString()}
+      `);
 
       // Add polyline connecting all points
-      var polyline = L.polyline(locations.map(function(location) {
+      L.polyline(locations.map(function(location) {
         return [location.latitude, location.longitude];
       }), {
         color: "blue"
       }).addTo(map);
 
-      // Add markers for each location
-      locations.forEach(function(location) {
-        L.marker([location.latitude, location.longitude], {
-          icon: blueIcon
-        }).addTo(map).bindTooltip(`
-      PM2.5: ${location.pm25} µg/m³<br>
-      PM10: ${location.pm10} µg/m³<br>
-      Temperature: ${location.temperature} °C<br>
-      Humidity: ${location.humidity} %<br>
-      Date: ${new Date(location.created_at).toLocaleDateString()}<br>
-      Time: ${new Date(location.created_at).toLocaleTimeString()}
-    `);
-      });
-
       // Update the last received data section
       document.getElementById("time_date").innerHTML = new Date(locations[locations.length - 1].created_at).toLocaleDateString();
       document.getElementById("time_time").innerHTML = new Date(locations[locations.length - 1].created_at).toLocaleTimeString();
-      document.getElementById("latitude").innerHTML = locations[locations.length - 1].pm25; // Adjusted to show pm25
-      document.getElementById("longitude").innerHTML = locations[locations.length - 1].pm10; // Adjusted to show pm10
+      document.getElementById("latitude").innerHTML = locations[locations.length - 1].latitude;
+      document.getElementById("longitude").innerHTML = locations[locations.length - 1].longitude;
     }
 
     fetch('api/location')
       .then(response => response.json())
       .then(data => {
-        updateMap(data);
+        var locations = data.map(location => ({
+          latitude: location.latitude,
+          longitude: location.longitude,
+          pm25: location.pm25,
+          pm10: location.pm10,
+          temperature: location.temperature,
+          humidity: location.humidity,
+          created_at: location.created_at
+        }));
+        updateMap(locations);
       })
       .catch(error => console.error('Error fetching location data:', error));
-
-    // JavaScript to handle navigation
-    (function() {
-      const allowedPages = new Set(['home', 'data', 'location', 'history', 'dashboard']);
-
-      function handleLinkClick(event) {
-        const page = event.target.getAttribute('data-page');
-        if (allowedPages.has(page)) {
-          return; // Allow navigation
-        }
-        event.preventDefault();
-        alert('Navigation is restricted to the navbar links only.');
-      }
-
-      document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
-        link.addEventListener('click', handleLinkClick);
-      });
-
-      window.addEventListener('beforeunload', function(event) {
-        const hash = location.hash;
-        if (hash && !allowedPages.has(hash.slice(1))) {
-          event.preventDefault();
-          event.returnValue = ''; // For most browsers
-        }
-      });
-    })();
   </script>
 </body>
 

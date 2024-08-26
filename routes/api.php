@@ -10,6 +10,7 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\SendDataController;
 use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\TrackingController;
+use App\Http\Controllers\DosisController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -47,3 +48,6 @@ Route::get('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpd
 Route::get('/kodularUpdatePassword', [ProfileKodularController::class, 'kodularUpdatePassword']);
 Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 Route::get('/kodularExposure', [ProfileKodularController::class, 'PersonalExposure']);
+
+Route::post('/dosis', [DosisController::class, 'index']);
+Route::get('/dosis', [DosisController::class, 'read']);
