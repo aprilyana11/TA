@@ -93,7 +93,7 @@ class ProfileKodularController extends Controller
             // Hitung rata-rata dari data 'pm25'
             $pm25Average = $pm25Dose->average();
             $doseCalculate = ($pm25Average * 0.83 * 1 * 1) / $weight;
-            $doseCalculate = number_format($doseCalculate, 3);
+            $doseCalculate = number_format($doseCalculate, 2);
         } else {
             // Jika kurang dari 480 data, set $pm25Average menjadi null
             $pm25Average = null;

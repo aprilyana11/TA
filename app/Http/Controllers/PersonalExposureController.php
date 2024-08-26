@@ -106,6 +106,7 @@ class PersonalExposureController extends Controller
 
             'exposure_level' => $exposure_level,
             'exposureValue' => $doseCalculate,
+
             'recommendationTime' => $recommendationTime
         ]);
     }
