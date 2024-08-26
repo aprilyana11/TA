@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dosis;
 use App\Models\WAQMS_Location;
 use App\Models\WAQMS_Raw;
 use App\Models\WAQMS_Valid;
@@ -11,6 +12,10 @@ use Illuminate\Support\Facades\Log;
 
 class SendDataController extends Controller
 {
+    public function send_dosis(Request $request)
+    {
+        dosis::create($request->all());
+    }
     public function send(Request $request)
     {
         // Create entry in WAQMS_Raw

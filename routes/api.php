@@ -10,7 +10,6 @@ use App\Http\Controllers\RegistrasiController;
 use App\Http\Controllers\SendDataController;
 use App\Http\Controllers\StatistikController;
 use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\DosisController;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +25,7 @@ Route::middleware(['web'])->group(function () {
     Route::put('/updatepassword', [ProfileController::class, 'updatePassword'])->name('profile.passchange');
 });
 
+
 Route::get('/location', [TrackingController::class, 'index']);
 Route::get('/data/location', [TrackingController::class, 'database']);
 Route::get('/data/valid', [ParameterController::class, 'index'])->name('data.valid');
@@ -33,6 +33,7 @@ Route::get('/data/kodular', [ParameterController::class, 'kodular']);
 
 
 Route::post('/send', [SendDataController::class, 'send']);
+Route::post('/send-dosis', [SendDataController::class, 'send_dosis']);
 Route::get('/History/{type}', [DataController::class, 'History']);
 Route::get('/Statistik/{parameter}', [StatistikController::class, 'index']);
 
@@ -48,6 +49,3 @@ Route::get('/kodularUpdateWeight', [ProfileKodularController::class, 'kodularUpd
 Route::get('/kodularUpdatePassword', [ProfileKodularController::class, 'kodularUpdatePassword']);
 Route::post('/kodularlogin', [LoginController::class, 'kodularlogin']);
 Route::get('/kodularExposure', [ProfileKodularController::class, 'PersonalExposure']);
-
-Route::post('/dosis', [DosisController::class, 'index']);
-Route::get('/dosis', [DosisController::class, 'read']);

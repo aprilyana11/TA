@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\dosis;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -102,13 +103,29 @@ class ProfileKodularController extends Controller
 
         $exposure_level = 'Tidak Ada';
 
+        $starofday = Carbon::now()->startOfDay();
+        $sekarang = Carbon::now();
+        $dosis = dosis::whereBetween('created_at', [$starofday, $sekarang])->sum('dosis');
+
+        //KUOTA 
+        $pi3 = 4.29 * 0.75;
+        $pi2 = 4.29 * 0.5;
+        $pi1 = 4.29 * 0.25;
+        $pi0 = 0;
+
+        $kuota = 4.29 - $dosis;
+        //KUOTA
         // Tentukan level paparan berdasarkan exposure_value
-        if ($dose === null) {
+        if ($dosis === null) {
             $exposure_level = 'Tidak Ada';
-        } elseif ($doseCalculate <= $dose) {
+        } elseif ($kuota >= $pi3) {
             $exposure_level = 'Sangat Aman';
-        } elseif ($doseCalculate > $dose && $doseCalculate <= 0.2) {
+        } elseif ($kuota >= $pi2 && $kuota < $pi3) {
+            $exposure_level = 'Cukup Aman';
+        } elseif ($kuota >= $pi1 && $kuota < $pi2) {
             $exposure_level = 'Aman';
+        } elseif ($kuota >= 0 && $kuota < $pi1) {
+            $exposure_level = 'Hati - Hati';
         } else {
             $exposure_level = 'Berbahaya';
         }

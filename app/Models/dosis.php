@@ -7,11 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class dosis extends Model
 {
+    use HasFactory;
     protected $table = 'dosis';
     public $timestamps = false;
-    protected $fillable = [
-        'created_at',
-        'dosis'
-    ];
-    use HasFactory;
+    protected $fillable = ['id', 'created_at', 'dosis'];
 }

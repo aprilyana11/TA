@@ -7,63 +7,7 @@
     <title>Dashboard</title>
     <link rel="stylesheet" href="{{ asset('css/style3.css') }}">
     <link href="https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css" rel="stylesheet">
-    <style>
-        i.bx {
-            font-size: 24px;
-            /* Ukuran font */
-            display: inline-block;
-            vertical-align: middle;
-        }
 
-        .profile {
-            display: flex;
-            align-items: center;
-        }
-
-        .profile img {
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-
-        .profile .name {
-            font-weight: bold;
-        }
-
-        .personal-exposure {
-            display: flex;
-            align-items: center;
-            background: #f5f5f5;
-            border-radius: 8px;
-            padding: 10px;
-            margin-top: 20px;
-            border: 1px solid #ddd;
-        }
-
-        .personal-exposure i {
-            font-size: 30px;
-            color: #3b3b3b;
-        }
-
-        .personal-exposure .text {
-            margin-left: 10px;
-        }
-
-        .personal-exposure .level {
-            font-weight: bold;
-            font-size: 16px;
-        }
-
-        .personal-exposure .value {
-            font-size: 24px;
-            color: #ff4d4d;
-            font-weight: bold;
-        }
-
-        .personal-exposure .recommendation {
-            font-size: 14px;
-            color: #777;
-        }
-    </style>
 </head>
 
 <body>
@@ -198,10 +142,9 @@
                     <span class="text">
                         <p>Pressure</p>
                         <p>{{$pressure}} mdpl</p>
-                    </span>
                 </li>
                 <!-- Personal Exposure Box -->
-                <li class="personal-exposure">
+                <li class="personal-exposure {{ strtolower(str_replace(' ', '-', $exposure_level)) }}">
                     <i class="bx bxs-face-mask"></i>
                     <span class="text">
                         <p>Indeks Paparan Personal</p>
