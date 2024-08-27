@@ -54,7 +54,7 @@ class PersonalExposureController extends Controller
             $pm25Dose = WAQMS_Valid::whereBetween('created_at', [$yesterday1, $yesterday2])->pluck('pm25');
 
             // Cek apakah jumlah data setidaknya 45
-            if ($pm25Dose->count() >= 45) { //1jam * 60 data / 1 jamnya 75% 
+            if ($pm25Dose->count() >= 270) { //1jam * 60 data / 1 jamnya 75% 
                 // Hitung rata-rata dari data 'pm25'
                 $pm25Average = $pm25Dose->average();
                 $doseCalculate = ($pm25Average * 0.83 * 1 * 1) / $weight;
@@ -68,26 +68,23 @@ class PersonalExposureController extends Controller
             $sekarang = Carbon::now();
             $dosis = dosis::whereBetween('created_at', [$starofday, $sekarang])->sum('dosis');
 
-            //KUOTA 
-            $pi3 = 4.29 * 0.75;
-            $pi2 = 4.29 * 0.5;
-            $pi1 = 4.29 * 0.25;
-            $pi0 = 0;
+            //dosis 
 
-            $kuota = 4.29 - $dosis;
+
+
             //KUOTA
             // Tentukan level paparan berdasarkan exposure_value
             if ($dosis === null) {
                 $exposure_level = 'Tidak Ada';
-            } elseif ($kuota >= $pi3) {
-                $exposure_level = 'Sangat Aman';
-            } elseif ($kuota >= $pi2 && $kuota < $pi3) {
-                $exposure_level = 'Cukup Aman';
-            } elseif ($kuota >= $pi1 && $kuota < $pi2) {
-                $exposure_level = 'Aman';
-            } elseif ($kuota >= 0 && $kuota < $pi1) {
-                $exposure_level = 'Hati - Hati';
-            } else {
+            } elseif ($dosis <= 4.428) {
+                $exposure_level = 'Baik';
+            } elseif ($dosis >= 4.428 && $dosis < 15.83) {
+                $exposure_level = 'Sedang';
+            } elseif ($dosis >= 15.83 && $dosis < 42.97) {
+                $exposure_level = 'Tidak Sehat';
+            } elseif ($dosis >= 42.97 && $dosis < 71.54) {
+                $exposure_level = 'Sangat Tidak Sehat';
+            } elseif ($dosis >= 71.54) {
                 $exposure_level = 'Berbahaya';
             }
             $recommendationTime = now()->format('H:i, M d'); // Waktu saat ini sebagai contoh

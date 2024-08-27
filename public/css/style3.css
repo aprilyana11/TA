@@ -679,24 +679,24 @@ i.bx {
 }
 
 /* Warna background berdasarkan level eksposur */
-.personal-exposure.sangat-aman {
+.personal-exposure.baik {
     background-color: #2ecc71 !important; /* Hijau */
 }
 
-.personal-exposure.cukup-aman {
-    background-color: #f1c40f !important; /* Kuning */
+.personal-exposure.sedang {
+    background-color: #4093dc !important; /* Kuning */
 }
 
-.personal-exposure.aman {
-    background-color: #3498db !important; /* Biru */
+.personal-exposure.Tidak-sehat {
+    background-color: #f1ed18 !important; /* Biru */
 }
 
-.personal-exposure.hati-hati {
-    background-color: #e67e22 !important; /* Oranye */
+.personal-exposure.Sangat-Tidak-Sehat {
+    background-color: #e62222 !important; /* Oranye */
 }
 
 .personal-exposure.berbahaya {
-    background-color: #e74c3c !important; /* Merah */
+    background-color: #000000 !important; /* Merah */
 }
 
 .personal-exposure.tidak-ada {

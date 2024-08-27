@@ -107,26 +107,19 @@ class ProfileKodularController extends Controller
         $sekarang = Carbon::now();
         $dosis = dosis::whereBetween('created_at', [$starofday, $sekarang])->sum('dosis');
 
-        //KUOTA 
-        $pi3 = 4.29 * 0.75;
-        $pi2 = 4.29 * 0.5;
-        $pi1 = 4.29 * 0.25;
-        $pi0 = 0;
-
-        $kuota = 4.29 - $dosis;
         //KUOTA
         // Tentukan level paparan berdasarkan exposure_value
         if ($dosis === null) {
             $exposure_level = 'Tidak Ada';
-        } elseif ($kuota >= $pi3) {
-            $exposure_level = 'Sangat Aman';
-        } elseif ($kuota >= $pi2 && $kuota < $pi3) {
-            $exposure_level = 'Cukup Aman';
-        } elseif ($kuota >= $pi1 && $kuota < $pi2) {
-            $exposure_level = 'Aman';
-        } elseif ($kuota >= 0 && $kuota < $pi1) {
-            $exposure_level = 'Hati - Hati';
-        } else {
+        } elseif ($dosis <= 4.428) {
+            $exposure_level = 'Baik';
+        } elseif ($dosis >= 4.428 && $dosis < 15.83) {
+            $exposure_level = 'Sedang';
+        } elseif ($dosis >= 15.83 && $dosis < 42.97) {
+            $exposure_level = 'Tidak Sehat';
+        } elseif ($dosis >= 42.97 && $dosis < 71.54) {
+            $exposure_level = 'Sangat Tidak Sehat';
+        } elseif ($dosis >= 71.54) {
             $exposure_level = 'Berbahaya';
         }
 
